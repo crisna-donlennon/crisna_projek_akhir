@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -13,12 +14,14 @@ class ProductController extends Controller
         $product = Product::where('id', $id)->get();
         return view('product', compact('product')); // Assuming your home view is in the 'resources/views/home' directory
     }
-    public function create() {
+    public function create()
+    {
         return view('dashboard.createproduct', [
             'types' => Type::all()
         ]);
     }
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         // dd($request->all());
         $validatedData = $request->validate([
             'nama_product' => 'required|max:225',
@@ -29,18 +32,13 @@ class ProductController extends Controller
             'harga' => 'required'
         ]);
 
-        if($request->file('gambar')) {
+        if ($request->file('gambar')) {
             $validatedData['gambar'] = $request->file('gambar')->store('assets', 'public');
         }
 
         Product::create($validatedData);
         return redirect("/dashboard/product")->with('success', 'Successfully added a new Post!');
     }
-    
-
-
-
-
 
     public function edit($id)
     {
@@ -67,9 +65,14 @@ class ProductController extends Controller
         $product->deskripsi = $request->input('deskripsi');
         $product->stok = $request->input('stok');
         $product->harga = $request->input('harga');
-        
+
         // Upload gambar (jika ada perubahan gambar)
         if ($request->hasFile('gambar')) {
+            // hapus existing gambar
+            if ($product->gambar) {
+                Storage::disk('public')->delete($product->gambar);
+            }
+            // end of hapus existing gambar
             $gambarPath = $request->file('gambar')->store('assets', 'public');
             $product->gambar = $gambarPath;
         }
