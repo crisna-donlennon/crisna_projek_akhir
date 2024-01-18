@@ -14,11 +14,6 @@
 </head>
 
 <body class="font-sans bg-slate-300">
-    {{-- NAVBAR --}}
-    <x-navbar />
-
-    {{-- HEADER --}}
-    <x-header />
     @yield('container')
 </body>
 

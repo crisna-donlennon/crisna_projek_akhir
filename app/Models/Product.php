@@ -10,17 +10,16 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Product extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'nama_product',
-        'deskripsi',
-        'stok',
-        'harga',
-        'gambar',
-        'type_id'
+    protected $guarded = [
+        'id'
     ];
-    
-    public function type() : BelongsTo
+
+    public function type(): BelongsTo
     {
         return $this->belongsTo(Type::class);
+    }
+    public function carts()
+    {
+        return $this->belongsToMany(Cart::class, 'cart_product', 'id_product', 'id_cart')->withPivot('kuantitas');
     }
 }

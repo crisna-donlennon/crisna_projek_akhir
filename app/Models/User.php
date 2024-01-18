@@ -17,13 +17,8 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'alamat',
-        'nomor_hp',
-        'roles',
+    protected $guarded = [
+        'id'
     ];
 
     /**
@@ -48,6 +43,6 @@ class User extends Authenticatable
 
     public function cart()
     {
-        return $this->belongsTo(Cart::class, 'id_user');
+        return $this->hasOne(Cart::class, 'id_user');
     }
 }
