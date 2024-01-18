@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
+            $table->string('unique_string', 10)->unique();
             $table->timestamps();
-            $table->float('jumlah');
-            $table->foreignId('id_cart')->references('id')->on('carts')->onDelete('cascade');
             $table->foreignId('id_user')->references('id')->on('users')->onDelete('cascade');
-            $table->foreignId('id_product')->references('id')->on('products')->onDelete('cascade');
-            $table->float('total_harga');
+            $table->double('total_harga');
+            $table->enum('status', ['Menunggu Konfirmasi', 'Proses', 'Dikirim', 'Selesai']);
+            $table->enum('payment_status', ['pending', 'paid', 'canceled']);
+            $table->string('snap_token')->nullable();
+
         });
     }
 
