@@ -56,10 +56,11 @@ class ProductController extends Controller
             'deskripsi' => 'required',
             'stok' => 'required|numeric',
             'harga' => 'required|numeric',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Contoh validasi untuk gambar
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Contoh validasi untuk gambar
             'type_id' => 'required|exists:types,id', // Memastikan type_id ada dalam tabel types
             // Tambahkan validasi lain sesuai kebutuhan
         ]);
+        // dd($request->all());
 
         $product = Product::find($id);
         $product->nama_product = $request->input('nama_product');

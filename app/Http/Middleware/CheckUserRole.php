@@ -6,7 +6,7 @@ use Closure;
 
 class CheckUserRole
 {
-    // public function handle($request, Closure $next, ...$roles)
+    public function handle($request, Closure $next, ...$roles)
     {
         $user = auth()->user();
 
