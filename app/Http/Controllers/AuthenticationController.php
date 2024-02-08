@@ -82,16 +82,86 @@ class AuthenticationController extends Controller
 
 
 
-    public function delete($id)
+    // public function delete(Request $request)
+    // {
+    //     $user = User::find($request->input('user_id'));
+        
+    //     if ($user) {
+    //         $user->delete();
+    //         return redirect('/dashboard')->with('success', 'Post deleted successfully');
+    //     } else {
+    //         return redirect('/dashboard')->with('error', 'Post not found');
+    //     }
+    // }
+
+
+
+
+
+    public function delete(Request $request, $id)
     {
         $user = User::find($id);
 
-        if ($user) {
-            $user->delete();
-            return redirect('/dashboard')->with('success', 'Post deleted successfully');
-        } else {
-            return redirect('/dashboard')->with('error', 'Post not found');
+        if (!$user) {
+            return redirect('/dashboard')->with('error', 'User not found');
         }
+
+        $user->delete();
+
+        return redirect('/dashboard')->with('success', 'User deleted successfully');
     }
 
+
+
+    
+    public function index()
+    {
+        $user = Auth::user();
+        return view('account', compact('user'));
+    }
+
+    public function update(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'alamat' => 'required|string',
+            'nomor_hp' => 'required|string',
+            'password' => 'nullable|confirmed|min:8', // You can adjust validation rules for the password
+        ]);
+
+        $user->name = $request->input('name');
+        $user->alamat = $request->input('alamat');
+        $user->nomor_hp = $request->input('nomor_hp');
+
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->input('password'));
+        }
+
+        $user->save();
+
+        return redirect()->route('account.index')->with('success', 'Account updated successfully');
+    }
+
+
+
+
+
+
+
+    public function updaterole($id, Request $request)
+    {
+        $user = User::findOrFail($id);
+
+        // Validate the request
+        $request->validate([
+            'roles' => ['required', 'in:pengguna,admin'],
+        ]);
+
+        // Update the user's role
+        $user->update(['roles' => $request->roles]);
+
+        return redirect()->back()->with('success', 'User role updated successfully.');
+    }
 }

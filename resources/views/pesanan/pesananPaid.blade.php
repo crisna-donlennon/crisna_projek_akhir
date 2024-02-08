@@ -47,12 +47,16 @@
                             <p class=" text-sm text-gray-700">Harga: </p>
                         </div>
                         @foreach ($order->orderItems as $product)
-                            <div class="w-full flex justify-between items-center mt-2">
+                            <div class="w-full flex justify-between items-center mt-2 border-b-2 pb-2">
                                 <p class=" text-sm text-gray-700">{{ $product->nama_product }}</p>
                                 <p class=" text-sm text-gray-700">{{ $product->kuantitas }}</p>
                                 <p class=" text-sm text-gray-700">Rp. {{ number_format($product->harga) }}</p>
                             </div>
                         @endforeach
+                        <div class="w-full flex justify-between items-center mt-1 border-b-2 pb-2">
+                            <p class=" text-sm text-gray-700">Ongkos Kirim: </p>
+                            <p class=" text-sm text-gray-700">Rp. 2.000</p>
+                        </div>
                     </div>
                     <div class="flex justify-end mt-8">
                         <div class="text-gray-700 mr-2">Total:</div>

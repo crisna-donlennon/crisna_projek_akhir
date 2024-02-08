@@ -16,8 +16,10 @@ class TypeFactory extends Factory
      */
     public function definition(): array
     {
+        $namaType = $this->faker->unique()->word();
+
         return [
-            'nama_type' => fake()->word()
+            'nama_type' => $namaType,
         ];
     }
 }

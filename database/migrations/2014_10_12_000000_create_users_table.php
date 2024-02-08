@@ -21,7 +21,7 @@ return new class extends Migration
             $table->timestamps();
             $table->text('alamat');
             $table->string('nomor_hp');
-            $table->enum("roles", ["pengguna", "admin"])->default("pengguna");
+            $table->enum("roles", ["pengguna", "admin", "pemilik"])->default("pengguna");
         });
     }
 

@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('nama_product');
-            $table->string('deskripsi');
-            $table->float('stok');
+            $table->text('deskripsi');
+            $table->double('stok');
             $table->double('harga');
             $table->string('gambar');
+            $table->double('berat');
             $table->foreignId('type_id')->references('id')->on('types')->cascadeOnDelete();
         });
     }

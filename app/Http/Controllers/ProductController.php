@@ -12,8 +12,20 @@ class ProductController extends Controller
     public function ProductView($id)
     {
         $product = Product::where('id', $id)->get();
-        return view('product', compact('product')); // Assuming your home view is in the 'resources/views/home' directory
+
+        $products = Product::class::orderBy("created_at", "desc")->get();
+        $types = Type::class::orderBy("nama_type")->get();
+        return view('product', compact('product', 'products', 'types')); // Assuming your home view is in the 'resources/views/home' directory
     }
+
+    public function ProductMain()
+    {
+        $products = Product::class::orderBy("created_at", "desc")->get();
+
+        $types = Type::class::orderBy("nama_type")->get();
+        return view('productmain', compact('products', 'types')); // Assuming your home view is in the 'resources/views/home' directory
+    }
+
     public function create()
     {
         return view('dashboard.createproduct', [
@@ -29,7 +41,8 @@ class ProductController extends Controller
             'gambar' => 'image|file',
             'deskripsi' => 'required',
             'stok' => 'required|numeric',
-            'harga' => 'required'
+            'harga' => 'required',
+            'berat' => 'required'
         ]);
 
         if ($request->file('gambar')) {
@@ -54,6 +67,7 @@ class ProductController extends Controller
             'deskripsi' => 'required',
             'stok' => 'required|numeric',
             'harga' => 'required|numeric',
+            'berat' => 'required|numeric',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Contoh validasi untuk gambar
             'type_id' => 'required|exists:types,id', // Memastikan type_id ada dalam tabel types
             // Tambahkan validasi lain sesuai kebutuhan
@@ -65,6 +79,7 @@ class ProductController extends Controller
         $product->deskripsi = $request->input('deskripsi');
         $product->stok = $request->input('stok');
         $product->harga = $request->input('harga');
+        $product->berat = $request->input('berat');
 
         // Upload gambar (jika ada perubahan gambar)
         if ($request->hasFile('gambar')) {
@@ -87,10 +102,49 @@ class ProductController extends Controller
 
 
 
+    // public function search(Request $request)
+    // {
+    //     $query = $request->input('query');
+
+    //     // Lakukan pencarian dengan menggunakan query
+    //     $products = Product::where('nama_product', 'like', '%' . $query . '%')
+    //         ->orWhere('stok', 'like', '%' . $query . '%')
+    //         ->get();
+
+    //     $types = Type::class::get();
+
+    //     return view('productmain', compact('products', 'types'));
+    // }
+
+    // public function search(Request $request)
+    // {
+    //     $query = $request->input('query');
+    //     $products = Product::where('nama_product', 'like', "%$query%")->get();
+    //     $types = Type::class::get();
+
+    //     return view('productmain', compact('products', 'types'));
+    // }
+    
+
+    // public function searchAjax(Request $request)
+    // {
+    //     $query = $request->input('query');
+    //     $products = Product::where('nama_product', 'like', "%$query%")->get();
+    //     $types = Type::class::get();
+
+    //     return view('search-results', compact('products', 'types'))->render();
+    // }
 
 
-
-
+    // public function search(Request $request)
+    // {
+    //     $searchTerm = $request->input('search');
+    //     $types = Type::all(); // Assuming you have a Type model
+    //     $products = Product::where('nama_product', 'like', '%' . $searchTerm . '%')->get(); // Assuming you have a Product model
+    
+    //     return view('searchresults', compact('types', 'products'));
+    // }
+    
 
 
     public function delete($id)

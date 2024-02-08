@@ -119,6 +119,22 @@ class OrderController extends Controller
         return view('pesanan.pesananPaid', ['orderDataPaid' => $orderDataPaid]);
     }
 
+    public function terima(Request $request) 
+    {
+        $order = OrderDetail::where('id', $request->input('id_order'))->first();
+        $order->update(['status' => 'Proses']);
+
+        return redirect()->back()->with('success', 'success update status order');
+    }
+
+    public function selesai(Request $request) 
+    {
+        $order = OrderDetail::where('id', $request->input('id_order'))->first();
+        $order->update(['status' => 'Selesai']);
+
+        return redirect()->back()->with('success', 'success update status order');
+    }
+
 
     public function destroy(Request $request)
     {

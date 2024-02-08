@@ -21,6 +21,7 @@ class ProductFactory extends Factory
             'nama_product' => fake()->word(),
             'deskripsi' => fake()->text(),
             'stok' => mt_rand(1, 900),
+            'berat' => mt_rand(1, 900),
             'harga' => mt_rand(2000, 20000),
             'gambar' => 'assets/paus.jpg',
             'type_id' => Type::factory()

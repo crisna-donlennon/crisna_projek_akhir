@@ -22,7 +22,7 @@
                 </div>
                 
                 <button type="submit"
-                class="bg-blue-500 text-white p-2 mt-2 w-full hover:bg-blue-600">
+                class="bg-yellow-300 text-black p-2 mt-2 w-full hover:bg-yellow-400">
                 Login
                 </button>
     

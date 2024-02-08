@@ -38,10 +38,16 @@ Route::middleware(['guest'])->group(function () {
 
 // DASHBOARD
 Route::middleware(['auth'])->group(function () {
-    Route::middleware(['checkUserRole:admin'])->group(function () {
+    Route::patch('/dashboard/user/{id}/update-role', [AuthenticationController::class, 'updaterole'])->name('user.update');
+    Route::middleware(['checkUserRole:admin,pemilik'])->group(function () {
         // USER
         Route::get('/dashboard', [DashboardController::class, 'UserView'])->name('dashboard.user');
-        Route::delete('/dashboard/user/{id}', [AuthenticationController::class, 'user.delete']);
+        // Route::delete('/dashboard/user/delete', [AuthenticationController::class, 'delete'])->name('user.delete');
+        // Route::delete('/dashboard/user/{id}', [AuthenticationController::class, 'delete'])->name('user.delete');
+        Route::delete('/dashboard/user/{id}', [AuthenticationController::class, 'delete'])->name('user.delete');
+        // Route::post('/dashboard/user/{id}/update-role', [AuthenticationController::class, 'update.role'])->name('user.update');
+
+
         // TYPE 
         Route::get('/dashboard/type', [TypeController::class, 'TypeView'])->name('dashboard.type');
         Route::delete('/dashboard/type/{id}', [TypeController::class, 'delete'])->name('type.delete');
@@ -49,34 +55,38 @@ Route::middleware(['auth'])->group(function () {
 
         // PRODUCT 
         Route::get('/dashboard/product', [DashboardController::class, 'ProductView'])->name('dashboard.product');
-        Route::get('/product/{id}', [ProductController::class, 'ProductView'])->name('product.index');
         Route::get('/dashboard/create-product', [ProductController::class, 'create'])->name('product.create');
         Route::post('/dashboard/create-product', [ProductController::class, 'store'])->name('product.store');
         Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
         Route::put('/product/{id}', [ProductController::class, 'update'])->name('product.update');
-<<<<<<< HEAD
-        Route::delete('/dashboard/product/{id}', [ProductController::class, 'delete'])->name('product.delete'); 
-    });    
-    
-=======
         Route::delete('/dashboard/product/{id}', [ProductController::class, 'delete'])->name('product.delete');
+        // Route::get('/productmain/search', [ProductController::class, 'search'])->name('product.search');
+        // Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
+        // Route::get('/products/search-ajax', [ProductController::class, 'searchAjax'])->name('search.result');
+        // Route::get('/search', [ProductController::class, 'search'])->name('product.search');
 
         // INVOICE
         Route::get('/dashboard/invoice', [DashboardController::class, 'InvoiceView'])->name('dashboard.invoice');
     });
-
-
+    
+    
+    Route::get('/product/{id}', [ProductController::class, 'ProductView'])->name('product.index');
     Route::get('/logout', [AuthenticationController::class, 'logout']);
-
+   
+    Route::get('/productmain', [ProductController::class, 'ProductMain'])->name('product.main');
+    
     Route::get('/cart', [CartController::class, 'CartView'])->name('cart');
     Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
     Route::post('/cart/delete/{id}', [CartController::class, 'delete'])->name('cart.delete');
     Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
 
-
     Route::post('/order/pay-and-create', [OrderController::class, 'payAndCreateOrder'])->name('order.payAndCreateOrder');
     Route::post('/order/destroy', [OrderController::class, 'destroy'])->name('order.destroy');
+    Route::put('/order/terima', [OrderController::class, 'terima'])->name('order.terima');
+    Route::put('/order/selesai', [OrderController::class, 'selesai'])->name('order.selesai');
     Route::get('/order/pesanan-pending', [OrderController::class, 'PesananPendingView'])->name('order.PesananPendingView');
     Route::get('/order/pesanan-paid', [OrderController::class, 'PesananPaidView'])->name('order.PesananPaidView');
->>>>>>> 512076b4859009094c47f62aea36cb7611315875
+
+    Route::get('/account', [AuthenticationController::class, 'index'])->name('account.index');
+    Route::patch('/account', [AuthenticationController::class, 'update'])->name('account.update');
 });

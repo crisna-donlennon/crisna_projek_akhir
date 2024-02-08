@@ -40,12 +40,12 @@
 
                 <div class="mb-2">
                     <label for="nomor_hp" class="block text-sm font-medium text-gray-700">Nomor Telepon:</label>
-                    <input type="text" id="nomor_hp" name="nomor_hp" pattern="[0-9]{12}" required
+                    <input type="text" id="nomor_hp" name="nomor_hp" pattern="[0-9]{12,13}" required
                         class="border-[1px] border-gray-400 mt-1 p-2 w-full hover:border-gray-500 focus:outline-none">
                 </div>
 
                 <div class="flex justify-between">
-                    <button type="submit" class="bg-blue-500 text-white p-2 mt-2 rounded-md hover:bg-blue-600">
+                    <button type="submit" class="bg-yellow-300 text-black p-2 mt-2 rounded-md hover:bg-yellow-400">
                         Register
                     </button>
 
@@ -54,6 +54,7 @@
                         <select name="roles" id="roles" class="text-sm p-1">
                             <option value="pengguna">Pengguna</option>
                             <option value="admin">Admin</option>
+                            <option value="pemilik">Pemilik</option>
                         </select>
                     </div>
                 </div>

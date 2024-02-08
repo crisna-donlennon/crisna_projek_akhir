@@ -30,6 +30,7 @@ class DashboardController extends Controller
     {
         $orderData = OrderDetail::with(['orderItems', 'user'])
             ->where('payment_status', 'paid')
+            ->orderBy('created_at', 'desc')
             ->get();
 
         return view('dashboard.invoice', ['orderData' => $orderData]);

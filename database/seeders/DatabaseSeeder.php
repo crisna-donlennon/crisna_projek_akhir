@@ -15,18 +15,28 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(10)->create();
-        
-        \App\Models\User::factory()->create([
-            'name' => 'Crisna Fajar Sugiarto',
-            'email' => 'crisna@gmail.com',
-            'roles' => 'admin'
-        ]);
+        // Create regular users
+        \App\Models\User::factory(5)->create();
 
-        $types = \App\Models\Type::factory()->count(5)->create();
+        // Check if YUKIHIRO user already exists
+        $yukihiroUser = \App\Models\User::where('name', 'YUKIHIRO')->first();
 
-        $types->each(function ($types) {
-            Product::factory()->count(1)->create(['type_id' => $types->id]);
+        // Create YUKIHIRO user only if it doesn't exist
+        if (!$yukihiroUser) {
+            \App\Models\User::factory()->create([
+                'name' => 'YUKIHIRO',
+                'email' => 'yukihiro@gmail.com', // Specify a unique email address
+                'password' => bcrypt('password'), // Use bcrypt to hash the password
+                'roles' => 'admin',
+            ]);
+        }
+
+        // Create types and associated products
+        $types = Type::factory()->count(3)->create();
+
+        $types->each(function ($type) {
+            $productCount = rand(1, 5); // Adjust the range based on your preference
+            Product::factory()->count($productCount)->create(['type_id' => $type->id]);
         });
     }
 }
