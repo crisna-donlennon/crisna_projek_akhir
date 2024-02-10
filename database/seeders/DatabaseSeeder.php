@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'YUKIHIRO',
                 'email' => 'yukihiro@gmail.com', // Specify a unique email address
                 'password' => bcrypt('password'), // Use bcrypt to hash the password
-                'roles' => 'admin',
+                'roles' => 'pemilik',
             ]);
         }
 

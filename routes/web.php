@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlamatController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
@@ -67,6 +68,11 @@ Route::middleware(['auth'])->group(function () {
 
         // INVOICE
         Route::get('/dashboard/invoice', [DashboardController::class, 'InvoiceView'])->name('dashboard.invoice');
+
+        Route::get('/create-alamat', [AlamatController::class, 'create'])->name('alamat.create');
+        Route::post('/store-alamat', [AlamatController::class, 'store'])->name('alamat.store');
+        Route::get('/get-province', [AlamatController::class, 'get_province'])->name('alamat.get_province');
+        Route::get('/get-city/{id}', [AlamatController::class, 'get_city'])->name('alamat.get_city');
     });
     
     

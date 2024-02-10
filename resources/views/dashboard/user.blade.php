@@ -12,9 +12,6 @@
                     Email
                 </th>
                 <th scope="col" class="px-4 py-2">
-                    Alamat
-                </th>
-                <th scope="col" class="px-4 py-2">
                     Nomor HP
                 </th>
                 <th scope="col" class="px-4 py-2">
@@ -35,9 +32,6 @@
                     {{ $user->email }}
                 </td>
                 <td class="px-4 py-2 bg-gray-100">
-                    {{ $user->alamat }}
-                </td>
-                <td class="px-4 py-2 bg-gray-100">
                     {{ $user->nomor_hp }}
                 </td>
                 <!-- Inside the foreach loop in your Blade file -->
@@ -45,20 +39,28 @@
                     <form action="{{ route('user.update', ['id' => $user->id]) }}" method="post">
                         @csrf
                         @method('patch') <!-- Assuming you want to use PATCH method for updating -->
-
+        
                         <td class="px-4 py-2 bg-gray-100">
-                            <select name="roles" onchange="this.form.submit()">
-                                <option value="pengguna" {{ $user->roles === 'pengguna' ? 'selected' : '' }}>Pengguna</option>
-                                <option value="admin" {{ $user->roles === 'admin' ? 'selected' : '' }}>Admin</option>
-                                <option value="pemilik" {{ $user->roles === 'pemilik' ? 'selected' : '' }}>PEMILIK</option>
-                            </select>
+                            @if($user->id !== auth()->user()->id && $user->roles !== 'pemilik')
+                                <select name="roles" onchange="this.form.submit()">
+                                    <option value="pengguna" {{ $user->roles === 'pengguna' ? 'selected' : '' }}>Pengguna</option>
+                                    <option value="admin" {{ $user->roles === 'admin' ? 'selected' : '' }}>Admin</option>
+                                </select>
+                            @else
+                                {{ $user->roles }}
+                            @endif
                         </td>
                     </form>
+                @elseif($user->roles === 'pemilik')
+                    <td class="px-4 py-2 bg-gray-100">
+                        {{ $user->roles }}
+                    </td>
                 @else
                     <td class="px-4 py-2 bg-gray-100">
                         {{ $user->roles }}
                     </td>
                 @endif
+    
                 <td class="px-4 py-2 justify-center flex items-center bg-gray-100">
                     @auth
                         @if(auth()->user()->roles === 'pemilik')

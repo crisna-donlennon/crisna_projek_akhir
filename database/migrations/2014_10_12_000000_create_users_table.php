@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->text('alamat');
             $table->string('nomor_hp');
             $table->enum("roles", ["pengguna", "admin", "pemilik"])->default("pengguna");
         });

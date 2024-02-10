@@ -71,8 +71,7 @@
                             {{ $product->harga }}
                         </td>
                         <td class="px-4 py-2 bg-gray-100 p-1 w-10 h-20">
-                            <img src="{{ asset('storage/' . $product->gambar) }}" alt=""
-                                class="w-full h-full object-cover">
+                            <img src="{{ asset('storage/' . $product->gambar) }}" alt="" class="w-full h-full object-cover">
                         </td>
                         <td class="px-4 py-2 bg-gray-100">
                             <a href="{{ url('/product/' . $product->id . '/edit') }}"

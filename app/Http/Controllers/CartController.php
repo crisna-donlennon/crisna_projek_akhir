@@ -20,6 +20,7 @@ class CartController extends Controller
         }
 
         $cartItems = $cart->products()->withPivot('kuantitas')->get();
+        $alamats = $user->alamats()->get();
 
         $calculateTotalHarga = function ($cartItems) {
             return $cartItems->reduce(function ($total, $item) {
@@ -30,7 +31,7 @@ class CartController extends Controller
 
         $totalPrice = $calculateTotalHarga($cartItems);
 
-        return view('cart', compact('cartItems', 'totalPrice'));
+        return view('cart', compact('cartItems', 'totalPrice', 'alamats'));
     }
 
 

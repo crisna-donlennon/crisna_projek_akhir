@@ -21,9 +21,11 @@
             </div>
 
             <div class="mb-4">
-                <label for="alamat" class="block text-sm font-medium text-gray-600">Alamat</label>
-                <input type="text" name="alamat" id="alamat" value="{{ Auth::user()->alamat }}" class="mt-1 p-2 border rounded w-full" required>
-            </div>
+                <p class="block text-sm font-medium text-gray-600">Alamat</p>
+                <a href="/create-alamat" class="block mt-2 bg-blue-500 text-white px-4 py-2 w-full rounded hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
+                    +Tambah Alamat
+                </a>           
+             </div>
 
             <div class="mb-4">
                 <label for="nomor_hp" class="block text-sm font-medium text-gray-600">Nomor HP</label>
