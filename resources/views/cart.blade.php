@@ -17,6 +17,12 @@
             foreach ($cartItems as $item) {
                 $productData[] = $item;
             }
+            $totalWeight = 0;
+            foreach ($cartItems as $item) {
+                $productWeight = $item->berat;
+                $quantity = $item->pivot->kuantitas;
+                $totalWeight += $productWeight * $quantity;
+            }
         @endphp
 
         <div class="flex justify-center gap-7">
@@ -103,46 +109,90 @@
                     <div class="rounded-md flex-col h-fit flex my-5 px-5 py-4 bg-white text-sm border-[1px]">
                         <div class="">
                             <p class="font-semibold text-lg uppercase flex justify-center underline pb-5">
-                                Pilih Alamat
+                                Pengiriman
                             </p>
                         </div>
+                        {{-- totalWeigth --}}
+                        <input type="hidden" id="totalWeight" value="{{ $totalWeight }}">
 
-                        <select name="selected_address" id="selected_address">
-                            @foreach ($alamats as $alamat)
-                                <option value="{{ $alamat->id }}">{{ $alamat->alamat_detail . ', ' . $alamat->nama_city . ', ' . $alamat->nama_province }}</option>
-                            @endforeach
-                            <option value="new">Tambah Alamat Baru</option>
-                        </select>
-                    
-                        <div id="selected_address_display">
-                            <!-- Default display, you might initially display the first address -->
-                            <div class="break-words border-black border p-3">
-                                <p>Alamat : {{ $alamats[0]->alamat_detail . ', ' . $alamats[0]->nama_city . ', ' . $alamats[0]->nama_province }}</p>
-                            </div>
-                        </div>
+                        @if (!empty($alamats) && count($alamats) > 0)
+                            <label class="block text-sm font-medium text-gray-600">Pilih Alamat:</label>
+                            <select name="selected_address" id="selected_address"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-3">
+                                <option value="">Pilih Alamat</option>
+                                @foreach ($alamats as $alamat)
+                                    <option value="{{ $alamat->id }}" data-city-id="{{ $alamat->city_id }}">
+                                        {{ $alamat->alamat_detail . ', ' . $alamat->nama_city . ', ' . $alamat->nama_province }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        @else
+                            <select name="selected_address" id="selected_address"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-3">
+                                <option value="">
+                                    Tambah alamat terlebih dahulu
+                                </option>
+                            </select>
+                        @endif
 
-
-                        <div class="flex justify-between border-y-[1px] pb-[2px] mt-1">
-                            <div class="flex w-full h-full">
-                                <div class="flex font-medium break">
-                                    <p class="flex items-center">
-                                        Ongkir:
+                        @if (!empty($alamats) && count($alamats) > 0)
+                            <div id="selected_address_display">
+                                <label class="block text-sm font-medium text-gray-600">Alamat Yang Dipilih:</label>
+                                <div id="selected_address_info"
+                                    class="break-words border-gray-300 rounded-lg border p-3 mb-3">
+                                    <p>Alamat :
+                                        <span id="selected_address_text">Pilih Alamat terlebih dahulu</span>
                                     </p>
                                 </div>
                             </div>
 
-                            <div class="w-48">
-                                <!-- You can also add buttons for updating quantity or removing the product -->
-                                <div class="flex justify-between pl-4">
-                                    <p class="">
-                                        Rp.
-                                    </p>
-                                    <p class="">
-                                        2,000
-                                    </p>
+
+                            <div class="form-group ">
+                                <label class="block text-sm font-medium text-gray-600">Pilih Ekspedisi<span>*</span>
+                                </label>
+                                <select name="kurir" id="kurir"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-3">
+                                    <option value="">Pilih kurir</option>
+                                    <option value="jne">JNE</option>
+                                    <option value="tiki">TIKI</option>
+                                    <option value="pos">POS INDONESIA</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="block text-sm font-medium text-gray-600">Pilih Layanan<span>*</span>
+                                </label>
+                                <select name="layanan" id="layanan"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-3">
+                                    <option value="">Pilih layanan</option>
+                                </select>
+                            </div>
+                        @else
+                            <p class="font-semibold text-center mt-2">Pilih alamat terlebih dahulu</p>
+                        @endif
+
+
+                        @if (!empty($alamats) && count($alamats) > 0)
+                            <div class="flex justify-between border-y-[1px] pb-[2px] mt-1">
+                                <div class="flex w-full h-full">
+                                    <div class="flex font-medium break">
+                                        <p class="flex items-center">
+                                            Ongkir:
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="w-48">
+                                    <!-- You can also add buttons for updating quantity or removing the product -->
+                                    <div class="flex justify-between pl-4">
+                                        <p class="">
+                                            Rp.
+                                        </p>
+                                        <p class="ongkoskirim">0</p>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
 
 
                         <a href="/create-alamat"
@@ -199,9 +249,7 @@
                                     <p class="">
                                         Rp.
                                     </p>
-                                    <p class="">
-                                        2,000
-                                    </p>
+                                    <p class="ongkoskirim">0</p>
                                 </div>
                             </div>
                         </div>
@@ -221,8 +269,8 @@
                                     <p class="flex items-center">
                                         Rp.
                                     </p>
-                                    <p class="flex items-center">
-                                        {{ number_format($totalPrice + 2000) }}
+                                    <p class="flex items-center totalHarga">
+                                        {{ number_format($totalPrice) }}
                                     </p>
                                 </div>
                             </div>
@@ -245,45 +293,145 @@
         </div>
 
         <script>
-            $("#checkoutButton").click(function(event) {
-                event.preventDefault();
+            $(document).ready(function() {
+                var harga_ongkir = 0;
 
-                const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
-
-                const productData = ({!! json_encode($productData) !!});
                 const totalPrice = {!! json_encode($totalPrice) !!}
-                fetch('order/pay-and-create', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': csrfToken,
-                        },
-                        credentials: 'include',
-                        body: JSON.stringify({
-                            productData: productData,
-                            totalPrice: totalPrice + 2000,
-                            id_cart: productData[0].pivot.id_cart,
-                            payment_status: 'pending'
-                        }),
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        snap.pay(data.snap_token.snap_token, {
-                            onSuccess: function(result) {
-                                window.location.href = '/order/pesanan-paid'
+
+                $("#checkoutButton").click(function(event) {
+                    event.preventDefault();
+                    if (harga_ongkir == 0) {
+                        return
+                    }
+
+                    const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
+
+                    const productData = ({!! json_encode($productData) !!});
+
+                    fetch('order/pay-and-create', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': csrfToken,
                             },
-                            onPending: function(result) {
-                                window.location.href = '/order/pesanan-pending'
-                            },
-                            onClose: function(result) {
-                                window.location.href = '/order/pesanan-pending'
-                            }
+                            credentials: 'include',
+                            body: JSON.stringify({
+                                productData: productData,
+                                totalPrice: totalPrice + harga_ongkir,
+                                id_cart: productData[0].pivot.id_cart,
+                                payment_status: 'pending'
+                            }),
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            snap.pay(data.snap_token.snap_token, {
+                                onSuccess: function(result) {
+                                    window.location.href = '/order/pesanan-paid'
+                                },
+                                onPending: function(result) {
+                                    window.location.href = '/order/pesanan-pending'
+                                },
+                                onClose: function(result) {
+                                    window.location.href = '/order/pesanan-pending'
+                                }
+                            });
+                        })
+                        .catch(error => {
+                            console.error('Error during fetch:', error);
                         });
-                    })
-                    .catch(error => {
-                        console.error('Error during fetch:', error);
+                })
+
+                // Gae ngerubah selected alamat
+                $('select[name="selected_address"]').on('change', function() {
+                    // Get the selected option
+                    var selectedOption = $(this).find(':selected');
+
+                    // Get the city ID from the data attribute
+                    var cityId = selectedOption.data('city-id');
+
+                    // Get the selected address text
+                    var addressText = selectedOption.text();
+
+                    // Update the displayed address information
+                    $('#selected_address_text').text(addressText);
+
+                    // Log the selected city ID (optional)
+                    console.log("Selected City ID:", cityId);
+                });
+
+
+                // cek ekspedisi
+                $('select[name="selected_address"], select[name="kurir"]').on('change', function() {
+                    $('select[name="layanan"]').prop('disabled', true).html(
+                        '<option value="">Loading...</option>');
+                    let origin = 444;
+                    let destination = $('select[name="selected_address"]').find(':selected').data('city-id');
+                    console.log(destination);
+                    let courier = $("select[name=kurir]").val();
+                    let weight = $("#totalWeight").val();
+                    jQuery.ajax({
+                        url: "/origin=" + origin + "&destination=" + destination + "&weight=" +
+                            weight +
+                            "&courier=" + courier,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            $('select[name="layanan"]').prop('disabled', false)
+                            $('select[name="layanan"]').empty();
+                            // ini untuk looping data result nya
+                            $('select[name="layanan"]').append($('<option>').attr('value', '').text(
+                                'Pilih Layanan'));
+                            $.each(data, function(key, value) {
+                                // Loop through each service
+                                $.each(value.costs, function(key1, value1) {
+                                    // Loop through each cost
+                                    $.each(value1.cost, function(key2, value2) {
+                                        // Append an option to the select element with the relevant data attributes
+                                        $('select[name="layanan"]').append(
+                                            $('<option>').attr('value',
+                                                key)
+                                            .attr('data-service', value1
+                                                .service)
+                                            .attr('data-description',
+                                                value1.description)
+                                            .attr('data-value', value2
+                                                .value)
+                                            .text(value1.service +
+                                                ' - ' + value1
+                                                .description + ' - ' +
+                                                value2.value)
+                                        );
+                                    });
+                                });
+                            });
+                        }
                     });
-            })
+                });
+
+                // Ambil ongkir
+                $('select[name="layanan"]').on('change', function() {
+                    // Get the selected option
+                    var selectedOption = $(this).find(':selected');
+
+                    // Retrieve the data-value attribute
+                    harga_ongkir = selectedOption.data("value");
+
+                    var totalHarga = totalPrice + harga_ongkir;
+
+                    var number_format = new Intl.NumberFormat('id-ID', {
+                        style: 'currency',
+                        currency: 'IDR',
+                        maximumFractionDigits: 0
+                    });
+
+                    // Menampilkan hasil nama harga ongkir dari select layanan yang kita pilih
+                    $(".ongkoskirim").text(number_format.format(harga_ongkir));
+                    $(".totalHarga").text(number_format.format(totalHarga));
+                });
+
+
+
+            });
         </script>
     </main>
 @endsection
