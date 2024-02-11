@@ -13,19 +13,18 @@ class ProductController extends Controller
     {
         $product = Product::where('id', $id)->get();
 
-        $products = Product::class::orderBy("created_at", "desc")->get();
-        $types = Type::class::orderBy("nama_type")->get();
-        return view('product', compact('product', 'products', 'types')); // Assuming your home view is in the 'resources/views/home' directory
+        $products = Product::orderBy("created_at", "desc")->get();
+        $types = Type::orderBy("nama_type")->get();
+        return view('product', compact('product', 'products', 'types'));
     }
 
     public function ProductMain()
     {
-        $products = Product::class::orderBy("created_at", "desc")->get();
-
-        $types = Type::class::orderBy("nama_type")->get();
-        return view('productmain', compact('products', 'types')); // Assuming your home view is in the 'resources/views/home' directory
+        $products = Product::orderBy("created_at", "desc")->paginate(12);
+        $types = Type::orderBy("nama_type")->get();
+        return view('productmain', compact('products', 'types'));
     }
-
+    
     public function create()
     {
         return view('dashboard.createproduct', [

@@ -1,40 +1,11 @@
 <div class="bg-slate-200 text-black pt-14 pb-5 w-full z-50 border-b-2 border-gray-400 flex justify-end items-center pr-10 leading-5 h-28 gap-10">
     @auth
-        {{-- <button class="bg-red-600 group hover:bg-blue-600  px-4 my-1 hover:rounded-t hover:rounded-b-none rounded relative border-black shadow-inner">
-            {{ Auth::user()->name }}
-            <div class="absolute right-0 top-6 w-full z-50">
-                <div class="hidden group-hover:flex hover:flex w-full flex-col bg-white drop-shadow-lg">
-                    <a class="bg-[rgb(233,233,237)] px-5 py-2 hover:bg-gray-300  text-sm" href="/logout">Logout</a>
-                </div>
-                @if (Auth::user()->roles == 'admin')
-                    <div class="hidden group-hover:flex hover:flex w-full flex-col bg-white drop-shadow-lg">
-                        <a class="bg-[rgb(233,233,237)] px-5 py-2 hover:bg-gray-300  text-sm"
-                            href="/dashboard">Dashboard</a>
-                    </div>
-                @endif
-            </div>
-        </button> --}}
-
-        <a href="/cart" class=" hover:text-[#0A2974] transition duration-300 ease-in-out">CART</a>
-        <a href="/order/pesanan-pending" class=" hover:text-[#0A2974] transition duration-300 ease-in-out">PESANANAN</a>
-
-        {{-- <div x-data="{ open: false }" class="relative inline-block text-left z-50 ">
-            <button @click="open = !open" type="button" class="inline-flex justify-center">
-                PROFILE
-                
-                <div x-show="open" @click.away="open = false" class="absolute right-0 mt-10 w-56 shadow-lg bg-white border-[1px]">
-                    <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                        <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" href="/logout">Logout</a>
-                    </div>
-                    @if (Auth::user()->roles == 'admin')
-                        <div class="">
-                            <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" href="/dashboard">Dashboard</a>
-                        </div>
-                    @endif
-                </div>
-            </button>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script> --}}
+        <a href="/cart" class=" hover:text-[#0A2974] transition duration-300 ease-in-out">
+            CART
+        </a>
+        <a href="/order/pesanan-pending" class=" hover:text-[#0A2974] transition duration-300 ease-in-out">
+            PESANANAN
+        </a>
     
 
         <div class="">
@@ -95,6 +66,6 @@
         
     @else
         <a href="/login" class=" hover:text-[#0A2974] transition duration-300 ease-in-out">LOGIN</a>
-        <a href="/adminregistration" class=" hover:text-[#0A2974] transition duration-300 ease-in-out">REGISTER</a>
+        <a href="/registration" class=" hover:text-[#0A2974] transition duration-300 ease-in-out">REGISTER</a>
     @endauth
 </div>

@@ -27,7 +27,7 @@
                 </button>
     
                 <p class="text-left mt-4">Belum mempunyai akun?
-                    <a href="/adminregistration" class="text-blue-600 hover:text-blue-700 duration-300">Daftar disini</a>
+                    <a href="/registration" class="text-blue-600 hover:text-blue-700 duration-300">Daftar disini</a>
                 </p>
         </form>
         </div>

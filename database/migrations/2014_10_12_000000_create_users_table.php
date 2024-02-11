@@ -20,7 +20,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->string('nomor_hp');
-            $table->enum("roles", ["pengguna", "admin", "pemilik"])->default("pengguna");
+            $table->enum("roles", ["pelanggan", "admin", "pemilik"])->default("pelanggan");
         });
     }
 

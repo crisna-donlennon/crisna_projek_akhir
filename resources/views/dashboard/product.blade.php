@@ -87,9 +87,9 @@
         // Initialize DataTables
         $(document).ready( function () {
             $('#product-table').DataTable({
-                "order": [[0, 2, 3, 4, 5, "asc"]], // Sort by the third column (Type) in ascending order
+                "order": [[0, 1, 2, 3, 4, 5, "asc"]], // Sort by the third column (Type) in ascending order
                 "columnDefs": [
-                    { "orderable": false, "targets": [1, 6] } // Disable sorting for other columns
+                    { "orderable": false, "targets": [6, 7] } // Disable sorting for other columns
                 ]
             });
         });

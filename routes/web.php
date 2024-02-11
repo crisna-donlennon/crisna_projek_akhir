@@ -30,8 +30,10 @@ Route::get('/redirect', function () {
 
 Route::middleware(['guest'])->group(function () {
     // REGISTRATION
-    Route::get('/adminregistration', [AuthenticationController::class, 'RegistrationView']);
-    Route::post('/adminregistration', [AuthenticationController::class, 'register'])->name('register.store');
+    Route::get('/registration', [AuthenticationController::class, 'RegistrationView']);
+    Route::post('/registration', [AuthenticationController::class, 'register'])->name('register.store');
+    Route::get('/adminregistration', [AuthenticationController::class, 'AdminRegistrationView']);
+    Route::post('/adminregistration', [AuthenticationController::class, 'adminregister'])->name('adminregister.store');
     // LOGIN
     Route::get('/login', [AuthenticationController::class, 'LoginView'])->name('login');
     Route::post('/login', [AuthenticationController::class, 'login'])->name('login.store');

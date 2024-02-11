@@ -109,9 +109,9 @@
     // Initialize DataTables
     $(document).ready( function () {
         $('#user-table').DataTable({
-            "order": [[0, 1, 3, 4, "asc"]], // Sort by the third column (Type) in ascending order
+            "order": [[0, 1, 2, 3, "asc"]], // Sort by the third column (Type) in ascending order
             "columnDefs": [
-                { "orderable": false, "targets": [2, 5] } // Disable sorting for other columns
+                { "orderable": false, "targets": [4] } // Disable sorting for other columns
             ]
         });
     });

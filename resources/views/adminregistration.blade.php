@@ -33,12 +33,6 @@
                 </div>
 
                 <div class="mb-2">
-                    <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat Pengiriman:</label>
-                    <input type="text" id="alamat" name="alamat" required
-                        class="border-[1px] border-gray-400 mt-1 p-2 w-full hover:border-gray-500 focus:outline-none">
-                </div>
-
-                <div class="mb-2">
                     <label for="nomor_hp" class="block text-sm font-medium text-gray-700">Nomor Telepon:</label>
                     <input type="text" id="nomor_hp" name="nomor_hp" pattern="[0-9]{12,13}" required
                         class="border-[1px] border-gray-400 mt-1 p-2 w-full hover:border-gray-500 focus:outline-none">
@@ -52,7 +46,7 @@
                     <div class="mb-2">
                         <label for="roles" class="block text-sm font-medium text-gray-700">Daftar sebagai:</label>
                         <select name="roles" id="roles" class="text-sm p-1">
-                            <option value="pengguna">Pengguna</option>
+                            <option value="pelanggan">Pelanggan</option>
                             <option value="admin">Admin</option>
                             <option value="pemilik">Pemilik</option>
                         </select>

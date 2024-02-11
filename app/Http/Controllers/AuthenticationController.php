@@ -32,12 +32,40 @@ class AuthenticationController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|unique:users,email|email',
             'password' => 'required|confirmed',
-            'roles' => 'required',
-            'alamat' => 'required|string',
+            // 'roles' => 'required',
+            // 'alamat' => 'required|string',
             'nomor_hp' => 'required|string'
         ]);        
 
         $datavalidate['password'] = Hash::make($datavalidate['password']);
+        // $datavalidate['roles'] = 'pelanggan'; // Set the default role to "pelanggan"
+
+        User::create($datavalidate);
+
+        if(Auth::attempt([
+            'email' => $request->email,
+            'password' => $request->password
+        ])) {
+            $request->session()->regenerate();
+            return redirect()->intended('/home')->with('success', 'Sign Up Successfull');
+        }            
+        return back()->with('LoginError' , 'LoginFailed');
+    }
+
+// ADMIN REGISTRATION
+    public function adminregister(Request $request)
+    {
+        $datavalidate = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|unique:users,email|email',
+            'password' => 'required|confirmed',
+            'roles' => 'required',
+            // 'alamat' => 'required|string',
+            'nomor_hp' => 'required|string'
+        ]);        
+
+        $datavalidate['password'] = Hash::make($datavalidate['password']);
+        // $datavalidate['roles'] = 'pelanggan'; // Set the default role to "pelanggan"
 
         User::create($datavalidate);
 
@@ -73,6 +101,11 @@ class AuthenticationController extends Controller
 
 // REDIRECT KE REGISTRATION PAGE
     public function RegistrationView(){
+        return view('registration');
+    }
+
+// REDIRECT KE ADMIN REGISTRATION PAGE
+    public function AdminRegistrationView(){
         return view('adminregistration');
     }
 
@@ -156,7 +189,7 @@ class AuthenticationController extends Controller
 
         // Validate the request
         $request->validate([
-            'roles' => ['required', 'in:pengguna,admin'],
+            'roles' => ['required', 'in:pelanggan,admin'],
         ]);
 
         // Update the user's role

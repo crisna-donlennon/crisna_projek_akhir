@@ -7,9 +7,13 @@
         Produk
     </h2>
 
+    <div class="mb-4">
+        <input type="text" id="productSearch" class="border rounded p-2" placeholder="Search by product name...">
+    </div>
+
 
     <div class="flex justify-between">   
-        <div class="mx-auto w-[280px] mr-7">
+        <div class="mx-auto w-[280px] mr-7 mb-10">
             <table class="border border-gray-300 w-full">
                 <thead class="">
                     <tr class="">
@@ -38,7 +42,7 @@
         {{-- PRODUCT --}}
         <div id="product-container" class="w-full grid grid-cols-4 gap-3 text-sm mb-6">
             @foreach ($products as $product)
-                 <a href="/product/{{ $product->id }}" class="product-card" data-type-id="{{ $product->type->id }}">
+                <a href="/product/{{ $product->id }}" class="product-card" data-type-id="{{ $product->type->id }}">
                     <div class="bg-white p-4 rounded-md shadow-md w-[213px] h-[400px] flex flex-col justify-between border-[1px]">
                         <div class="">
                             <div class="bg-gray-50 w-full flex justify-center border">
@@ -70,6 +74,11 @@
                 </a>
             @endforeach
         </div>
+
+    </div>
+    <div class="">
+        <!-- Pagination links -->
+        {{ $products->links() }}
     </div>
 
 </main>
@@ -115,6 +124,33 @@
             location.reload(true);
         });
     });
+
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // ... Your existing code ...
+
+        // Add event listener for search input
+        const productSearchInput = document.getElementById('productSearch');
+        productSearchInput.addEventListener('input', function () {
+            const searchTerm = this.value.trim().toLowerCase();
+            filterProductsByName(searchTerm);
+        });
+
+        function filterProductsByName(searchTerm) {
+            // Hide all products
+            const products = document.querySelectorAll('.product-card');
+            products.forEach(product => {
+                const productName = product.querySelector('.font-semibold').textContent.toLowerCase();
+                if (productName.includes(searchTerm)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+    });
+
 </script>
 
 @endsection
