@@ -1,11 +1,19 @@
 @extends('layouts.base')
 
 @section('container')
-
-{{-- MAIN PAGE --}}
+    {{-- MAIN PAGE --}}
     <main class="bg-slate-300 container mx-auto min-w-full pb-5 pt-10 px-10">
         <div class="bg-slate-300 p-8 rounded w-96 mx-auto pb-20">
             <p class="text-3xl font-bold mb-8 text-center">Admin Registration</p>
+            @if (session('success'))
+                <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4">
+                    {{ session('success') }}
+                </div>
+            @elseif(session('error'))
+                <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4">
+                    {{ session('error') }}
+                </div>
+            @endif
             <form action="/adminregistration" method="post">
                 @csrf
                 <div class="mb-2">
@@ -29,12 +37,6 @@
                 <div class="mb-2">
                     <label for="password" class="block text-sm font-medium text-gray-700">Konfirmasi Password:</label>
                     <input type="password" id="password" name="password_confirmation" required
-                        class="border-[1px] border-gray-400 mt-1 p-2 w-full hover:border-gray-500 focus:outline-none">
-                </div>
-
-                <div class="mb-2">
-                    <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat Pengiriman:</label>
-                    <input type="text" id="alamat" name="alamat" required
                         class="border-[1px] border-gray-400 mt-1 p-2 w-full hover:border-gray-500 focus:outline-none">
                 </div>
 
