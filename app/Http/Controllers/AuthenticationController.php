@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthenticationController extends Controller
 {
-// LOGINATION
+    // LOGINATION
     public function login(Request $request)
     {
         $datalog = $request->validate([
@@ -18,22 +18,22 @@ class AuthenticationController extends Controller
             'password' => 'required',
         ]);
 
-        if(Auth::attempt($datalog)) {
+        if (Auth::attempt($datalog)) {
             $request->session()->regenerate();
             return redirect()->intended('/home');
-        }    
-        return back()->with('LoginError' , 'LoginFailed');
+        }
+        return back()->with('LoginError', 'LoginFailed');
     }
 
-// REGISTRATION
+    // REGISTRATION
     public function register(Request $request)
     {
         $datavalidate = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|unique:users,email|email',
             'password' => 'required|confirmed',
-            // 'roles' => 'required',
-            // 'alamat' => 'required|string',
+            'roles' => 'required',
+            'alamat' => 'required|string',
             'nomor_hp' => 'required|string'
         ]);        
 
@@ -60,26 +60,26 @@ class AuthenticationController extends Controller
             'email' => 'required|unique:users,email|email',
             'password' => 'required|confirmed',
             'roles' => 'required',
-            // 'alamat' => 'required|string',
+            'alamat' => 'required|string',
             'nomor_hp' => 'required|string'
-        ]);        
+        ]);
 
         $datavalidate['password'] = Hash::make($datavalidate['password']);
         // $datavalidate['roles'] = 'pelanggan'; // Set the default role to "pelanggan"
 
         User::create($datavalidate);
 
-        if(Auth::attempt([
+        if (Auth::attempt([
             'email' => $request->email,
             'password' => $request->password
         ])) {
             $request->session()->regenerate();
             return redirect()->intended('/home')->with('success', 'Sign Up Successfull');
-        }            
-        return back()->with('LoginError' , 'LoginFailed');
+        }
+        return back()->with('error', 'Registrasi Gagal!');
     }
 
-// LOGOUTATION
+    // LOGOUTATION
     public function logout(Request $request)
     {
         Auth::logout();
@@ -94,8 +94,9 @@ class AuthenticationController extends Controller
         return $request->user();
     }
 
-// REDIRECT KE LOGIN PAGE
-    public function LoginView(){
+    // REDIRECT KE LOGIN PAGE
+    public function LoginView()
+    {
         return view('login');
     }
 
@@ -118,7 +119,7 @@ class AuthenticationController extends Controller
     // public function delete(Request $request)
     // {
     //     $user = User::find($request->input('user_id'));
-        
+
     //     if ($user) {
     //         $user->delete();
     //         return redirect('/dashboard')->with('success', 'Post deleted successfully');
@@ -146,7 +147,7 @@ class AuthenticationController extends Controller
 
 
 
-    
+
     public function index()
     {
         $user = Auth::user();

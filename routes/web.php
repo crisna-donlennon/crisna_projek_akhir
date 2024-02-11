@@ -70,19 +70,19 @@ Route::middleware(['auth'])->group(function () {
 
         // INVOICE
         Route::get('/dashboard/invoice', [DashboardController::class, 'InvoiceView'])->name('dashboard.invoice');
-
-        Route::get('/create-alamat', [AlamatController::class, 'create'])->name('alamat.create');
-        Route::post('/store-alamat', [AlamatController::class, 'store'])->name('alamat.store');
-        Route::get('/get-province', [AlamatController::class, 'get_province'])->name('alamat.get_province');
-        Route::get('/get-city/{id}', [AlamatController::class, 'get_city'])->name('alamat.get_city');
     });
-    
-    
+
+    Route::get('/create-alamat', [AlamatController::class, 'create'])->name('alamat.create');
+    Route::post('/store-alamat', [AlamatController::class, 'store'])->name('alamat.store');
+    Route::get('/get-province', [AlamatController::class, 'get_province'])->name('alamat.get_province');
+    Route::get('/get-city/{id}', [AlamatController::class, 'get_city'])->name('alamat.get_city');
+    Route::get('/origin={city_origin}&destination={city_destination}&weight={weight}&courier={courier}', [AlamatController::class, 'get_ongkir'])->name('alamat.get_ongkir');
+
     Route::get('/product/{id}', [ProductController::class, 'ProductView'])->name('product.index');
     Route::get('/logout', [AuthenticationController::class, 'logout']);
-   
+
     Route::get('/productmain', [ProductController::class, 'ProductMain'])->name('product.main');
-    
+
     Route::get('/cart', [CartController::class, 'CartView'])->name('cart');
     Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
     Route::post('/cart/delete/{id}', [CartController::class, 'delete'])->name('cart.delete');
