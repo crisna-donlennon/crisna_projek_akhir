@@ -20,7 +20,8 @@ class ProductController extends Controller
 
     public function ProductMain()
     {
-        $products = Product::orderBy("created_at", "desc")->paginate(12);
+        $products = Product::orderBy("created_at", "desc")->get();
+        // $products = Product::orderBy("created_at", "desc")->paginate(12);
         $types = Type::orderBy("nama_type")->get();
         return view('productmain', compact('products', 'types'));
     }

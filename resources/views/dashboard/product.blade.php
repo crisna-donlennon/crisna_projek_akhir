@@ -1,27 +1,29 @@
 @extends('dashboard.main')
 
-@section('content')
-    <div class="bg-white flex absolute left-80 top-10 p-2 pt-6 w-60 rounded-3xl">
-        <p class="text-lg flex w-full justify-center">
-            PRODUCT
-        </p>
-    </div>
+@section('header')
+<div class="flex justify-between">
+    <p class="text-lg flex w-fit font-semibold">
+        PRODUCTS
+    </p>
     <a href="/dashboard/create-product">
-        <button type="button" class="flex absolute right-20 top-[70px] p-2 mr-2 mt-1 hover:brightness-125">
-            <svg class="w-7 h-7 text-gray-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+        <button type="button" class="flex text-gray-500 hover:text-[#0A2974]">
+            <svg class="w-7 h-7" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                 fill="none" viewBox="0 0 20 20">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M10 5.757v8.486M5.757 10h8.486M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                d="M10 5.757v8.486M5.757 10h8.486M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
             </svg>
-            <p class="ml-2 pt-[1px] text-gray-600">
+            <p class="ml-2 pt-[1px] font-medium">
                 Tambahkan Produk
             </p>
         </button>
     </a>
+</div>
+@endsection
 
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+@section('content') 
+    <div class="relative overflow-x-auto">
         <table id="product-table" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400 shadow-lg border-b border-gray-300">
+            <thead class="text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400 border-b border-gray-300">
                 <tr>
                     <th scope="col" class="px-4 py-2">
                         Nama
@@ -45,37 +47,46 @@
                         Gambar
                     </th>
                     <th scope="col" class="py-2 flex justify-center">
-                        Action
+                        Edit
                     </th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($products as $product)
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                        <th class="px-4 py-2 text-gray-900 bg-gray-100 font-bold break text-xs w-60" scope="row">
+                    <tr class="odd:bg-slate-50 odd:dark:bg-gray-900 even:bg-slate-100 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <th class="px-4 py-2 text-gray-900  font-bold break text-xs w-56" scope="row">
                             {{ $product->nama_product }}
                         </th>
-                        <td class="px-4 py-2 bg-gray-100 break">
+                        <td class="px-4 py-2 break">
                             {{ $product->deskripsi }}
                         </td>
-                        <td class="px-4 py-2 bg-gray-100 break uppercase">
-                            {{ $product->type->nama_type }}
+                        <td class="px-4 py-2 break uppercase">
+                            <p class="w-fit px-3 flex items-center">
+                                {{ $product->type->nama_type }}
+                            </p>
                         </td>
-                        <td class="px-4 py-2 bg-gray-100">
-                            {{ $product->stok }}
+                        <td class="px-4 py-2">
+                            <p class="w-fit px-3 flex items-center">
+                                {{ $product->stok }}
+                            </p>
                         </td>
-                        <td class="px-4 py-2 bg-gray-100">
-                            {{ $product->berat }}
+                        <td class="px-4 py-2">
+                            <p class="w-fit px-3 flex items-center">
+                                {{ $product->berat }} gram
+                            </p>
                         </td>
-                        <td class="px-4 py-2 bg-gray-100">
-                            {{ $product->harga }}
+                        <td class="px-4 py-2">
+                            <p class="w-fit px-3 flex items-center">
+                                Rp. {{ number_format($product->harga) }}
+                            </p>
                         </td>
-                        <td class="px-4 py-2 bg-gray-100 p-1 w-10 h-20">
+                        <td class="px-4 py-2 p-1 w-10 h-20">
                             <img src="{{ asset('storage/' . $product->gambar) }}" alt="" class="w-full h-full object-cover">
                         </td>
-                        <td class="px-4 py-2 bg-gray-100">
-                            <a href="{{ url('/product/' . $product->id . '/edit') }}"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <td class="px-4 py-2">
+                            <a href="{{ url('/product/' . $product->id . '/edit') }}" class="w-fit px-3 flex justify-center align-middle items-center cursor-pointer font-medium hover:brightness-95 uppercase rounded-md hover:text-[#0A2974]">
+                                Edit
+                            </a>
                         </td>
                     </tr>
                 @endforeach

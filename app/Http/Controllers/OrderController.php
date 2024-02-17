@@ -33,8 +33,11 @@ class OrderController extends Controller
                 'unique_string' => Str::random(10),
                 'total_harga' => $requestData['totalPrice'],
                 'payment_status' => $requestData['payment_status'],
+                'alamat_id' => $requestData['alamat_id'],
+                'kurir' => $requestData['kurir'],
+                'layanan' => $requestData['layanan'],
+                'ongkos_kirim' => $requestData['ongkos_kirim'],
             ]);
-
 
             $productData = $requestData['productData'];
 
@@ -45,6 +48,7 @@ class OrderController extends Controller
                     'id_order_detail' => $orderDetail->id,
                     'id_product' => $product->id,
                     'nama_product' => $product->nama_product,
+                    'berat' => $product->berat,
                     'harga'      => $productKeranjang['harga'],
                     'kuantitas'   => $productKeranjang['pivot']['kuantitas'],
                 ]);
@@ -56,6 +60,15 @@ class OrderController extends Controller
             }
 
             Cart::destroy($requestData['id_cart']);
+
+            // Handle specific logic for 'CASH'
+            if ($requestData['kurir'] === 'CASH') {
+                // Example: Update 'kurir' field for 'CASH' orders
+                $orderDetail->update(['kurir' => 'CASH']);
+
+                // You can perform other actions specific to 'CASH' payments here
+                // For example, send a notification, update additional fields, etc.
+            }
 
             $payload = [
                 'transaction_details' => [
@@ -99,7 +112,7 @@ class OrderController extends Controller
     {
         $user = auth()->user();
 
-        $orderDataPending = OrderDetail::with(['orderItems', 'user'])
+        $orderDataPending = OrderDetail::with(['orderItems', 'user', 'alamat'])
             ->where('id_user', $user->id)
             ->where('payment_status', 'pending')
             ->get();
@@ -111,7 +124,7 @@ class OrderController extends Controller
     {
         $user = auth()->user();
 
-        $orderDataPaid = OrderDetail::with(['orderItems', 'user'])
+        $orderDataPaid = OrderDetail::with(['orderItems', 'user', 'alamat'])
             ->where('id_user', $user->id)
             ->where('payment_status', 'paid')
             ->get();

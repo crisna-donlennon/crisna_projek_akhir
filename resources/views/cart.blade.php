@@ -29,97 +29,93 @@
             @if ($totalPrice !== 0)
                 <div class="w-3/5">
                     @foreach ($cartItems as $product)
-                        <div class="container flex my-5 p-5 bg-white rounded-md shadow-md border-[1px]">
-                            <div class="flex w-full h-full">
-                                <div class="flex justify-center mr-5">
-                                    <img class="w-[60px] h-[80px] object-cover"
-                                        src="{{ asset('storage/' . $product->gambar) }}" alt="Product 1">
-                                </div>
-                                <div class="flex font-medium pt-1">
-                                    <p>{{ $product['nama_product'] }}</p>
-                                </div>
-                            </div>
-
-                            <div class="w-48">
-                                <!-- You can also add buttons for updating quantity or removing the product -->
-                                <div class="flex justify-between w-full mb-2 px-1">
-                                    <p class="">
-                                        Rp.
-                                    </p>
-                                    <p class="">
-                                        {{ number_format($product['harga'] * $product['pivot']['kuantitas']) }}
-                                    </p>
+                        <a href="/product/{{ $product->id }}" class="" >
+                            <div class="container flex my-5 p-5 bg-white rounded-md shadow-md border-[1px]">
+                                <div class="flex w-full h-full">
+                                    <div class="flex justify-center mr-5">
+                                        <img class="w-[60px] h-[80px] object-cover" src="{{ asset('storage/' . $product->gambar) }}" alt="Product 1">
+                                    </div>
+                                    <div class="flex font-medium pt-1">
+                                        <p>{{ $product['nama_product'] }}</p>
+                                    </div>
                                 </div>
 
-                                <div class="flex-col justify-between">
-                                    <div class="flex justify-between border-[1px] ">
-                                        <form action="{{ route('cart.update', ['id' => $product->id]) }}" method="POST"
-                                            class="flex">
-                                            @csrf
-                                            <input type="hidden" value="decrement" name="action">
-                                            <button
-                                                class="flex text-center items-center justify-center w-8 h-w-8 rounded-lg transition-all duration-300 active:scale-95 text-white hover:brightness-125"
-                                                type="submit">
-                                                <svg class="w-4 h-4 text-black" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                    <path stroke="currentColor" stroke-linecap="round"
-                                                        stroke-linejoin="round" stroke-width="2" d="M5 12h14" />
-                                                </svg>
-                                            </button>
-                                        </form>
+                                <div class="w-48">
+                                    <!-- You can also add buttons for updating quantity or removing the product -->
+                                    <div class="flex justify-between w-full mb-2 px-1">
+                                        <p class="">
+                                            Rp.
+                                        </p>
+                                        <p class="">
+                                            {{ number_format($product['harga'] * $product['pivot']['kuantitas']) }}
+                                        </p>
+                                    </div>
 
-                                        <div class="flex items-center justify-center border-x-[1px] px-4">
-                                            <p class="">{{ $product['pivot']['kuantitas'] }}x</p>
+                                    <div class="flex-col justify-between">
+                                        <div class="flex justify-between border-[1px] ">
+                                            <form action="{{ route('cart.update', ['id' => $product->id]) }}" method="POST" class="flex">
+                                                @csrf
+                                                <input type="hidden" value="decrement" name="action">
+                                                <button class="flex text-center items-center justify-center w-8 h-w-8 rounded-md transition-all duration-300 active:scale-95 text-white hover:brightness-125" type="submit">
+                                                    <svg class="w-4 h-4 text-black" aria-hidden="true"
+                                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                        <path stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-width="2" d="M5 12h14" />
+                                                    </svg>
+                                                </button>
+                                            </form>
+
+                                            <div class="flex items-center justify-center border-x-[1px] px-4">
+                                                <p class="">
+                                                    {{ $product['pivot']['kuantitas'] }}x
+                                                </p>
+                                            </div>
+
+                                            <form action="{{ route('cart.update', ['id' => $product->id]) }}" method="POST" class="flex">
+                                                @csrf
+                                                <input type="hidden" value="increment" name="action">
+                                                <button class="flex text-center items-center justify-center w-8 h-w-8 rounded-md transition-all duration-300 active:scale-95 text-white hover:brightness-125" type="submit" name="action" value="increment">
+                                                    <svg class="w-4 h-4 text-black" aria-hidden="true"
+                                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                        <path stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5" />
+                                                    </svg>
+                                                </button>
+                                            </form>
                                         </div>
 
-                                        <form action="{{ route('cart.update', ['id' => $product->id]) }}" method="POST"
-                                            class="flex">
+                                        <form action="{{ route('cart.delete', ['id' => $product->id]) }}" method="POST" class="">
                                             @csrf
-                                            <input type="hidden" value="increment" name="action">
-                                            <button
-                                                class="flex text-center items-center justify-center w-8 h-w-8 rounded-lg transition-all duration-300 active:scale-95 text-white hover:brightness-125"
-                                                type="submit" name="action" value="increment">
-                                                <svg class="w-4 h-4 text-black" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                    <path stroke="currentColor" stroke-linecap="round"
-                                                        stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5" />
-                                                </svg>
+                                            <button class="hover:text-red-600 flex border-x-[1px] border-b-[1px] text-center items-center justify-center w-full" type="submit" name="action" value="delete">
+                                                <p class="text-xs py-1">
+                                                    HAPUS
+                                                </p>
                                             </button>
                                         </form>
                                     </div>
-
-                                    <form action="{{ route('cart.delete', ['id' => $product->id]) }}" method="POST"
-                                        class="">
-                                        @csrf
-                                        <button
-                                            class="hover:text-red-500 flex border-x-[1px] border-b-[1px] text-center items-center justify-center w-full"
-                                            type="submit" name="action" value="delete">
-                                            <p class="text-xs py-1">
-                                                HAPUS
-                                            </p>
-                                        </button>
-                                    </form>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     @endforeach
                 </div>
 
+
+                
+                {{-- PENGIRIMAN --}}
                 <div class="max-w-[331px]">
-                    <div class="rounded-md flex-col h-fit flex my-5 px-5 py-4 bg-white text-sm border-[1px]">
+                    <div class="flex-col h-fit flex my-5 p-6 bg-white border border-gray-300">
                         <div class="">
-                            <p class="font-semibold text-lg uppercase flex justify-center underline pb-5">
-                                Pengiriman
+                            <p class="font-semibold text-lg uppercase flex justify-center underline">
+                                PENGIRIMAN
                             </p>
                         </div>
-                        {{-- totalWeigth --}}
                         <input type="hidden" id="totalWeight" value="{{ $totalWeight }}">
-
                         @if (!empty($alamats) && count($alamats) > 0)
-                            <label class="block text-sm font-medium text-gray-600">Pilih Alamat:</label>
-                            <select name="selected_address" id="selected_address"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-3">
-                                <option value="">Pilih Alamat</option>
+                            <label class="block text-sm font-medium text-gray-700 mb-1 mt-6">
+                                Pilih Alamat: 
+                            </label>
+                            <select name="selected_address" id="selected_address" class="bg-gray-50 border border-gray-300 text-sm rounded-md focus:ring-[#0A2974] focus:border-[#0A2974] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#0A2974] dark:focus:border-[#0A2974] mb-3">
+                                <option value="" selected disabled hidden></option>
                                 @foreach ($alamats as $alamat)
                                     <option value="{{ $alamat->id }}" data-city-id="{{ $alamat->city_id }}">
                                         {{ $alamat->alamat_detail . ', ' . $alamat->nama_city . ', ' . $alamat->nama_province }}
@@ -127,176 +123,187 @@
                                 @endforeach
                             </select>
                         @else
-                            <select name="selected_address" id="selected_address"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-3">
-                                <option value="">
-                                    Tambah alamat terlebih dahulu
-                                </option>
-                            </select>
+                            <div class="flex justify-center align-middle items-center mt-1">
+                                {{-- <svg class="absolute w-20 h-w-20 text-gray-200 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"/>
+                                </svg> --}}
+                                <svg class="w-40 h-w-40 text-gray-200 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.5 10a2.5 2.5 0 1 1 5 .2 2.4 2.4 0 0 1-2.5 2.4V14m0 3h0m9-5a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                </svg>
+                            </div>
                         @endif
-
                         @if (!empty($alamats) && count($alamats) > 0)
                             <div id="selected_address_display">
-                                <label class="block text-sm font-medium text-gray-600">Alamat Yang Dipilih:</label>
-                                <div id="selected_address_info"
-                                    class="break-words border-gray-300 rounded-lg border p-3 mb-3">
-                                    <p>Alamat :
-                                        <span id="selected_address_text">Pilih Alamat terlebih dahulu</span>
-                                    </p>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">
+                                    Alamat Tujuan Yang Dipilih: 
+                                </label>
+                                <div id="selected_address_info" class="bg-gray-50 border min-h-[70px] text-gray-600 border-gray-300 text-sm rounded-md focus:ring-[#0A2974] focus:border-[#0A2974] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#0A2974] dark:focus:border-[#0A2974] mb-3">
+                                    <span id="selected_address_text"></span>
                                 </div>
                             </div>
-
-
                             <div class="form-group ">
-                                <label class="block text-sm font-medium text-gray-600">Pilih Ekspedisi<span>*</span>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">
+                                    Pilih Ekspedisi*
                                 </label>
-                                <select name="kurir" id="kurir"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-3">
-                                    <option value="">Pilih kurir</option>
-                                    <option value="jne">JNE</option>
-                                    <option value="tiki">TIKI</option>
-                                    <option value="pos">POS INDONESIA</option>
+                                <select name="kurir" id="kurir" class="bg-gray-50 border border-gray-300 text-sm rounded-md focus:ring-[#0A2974] focus:border-[#0A2974] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#0A2974] dark:focus:border-[#0A2974] mb-3">
+                                    <option value="" selected disabled hidden></option>
+                                    <option value="jne">
+                                        JNE
+                                    </option>
+                                    <option value="tiki">
+                                        TIKI
+                                    </option>
+                                    <option value="pos">
+                                        POS INDONESIA
+                                    </option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label class="block text-sm font-medium text-gray-600">Pilih Layanan<span>*</span>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">
+                                    Pilih Layanan*
                                 </label>
-                                <select name="layanan" id="layanan"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-3">
-                                    <option value="">Pilih layanan</option>
+                                <select name="layanan" id="layanan" class="bg-gray-50 border border-gray-300 text-sm rounded-md focus:ring-[#0A2974] focus:border-[#0A2974] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#0A2974] dark:focus:border-[#0A2974] mb-3">
+                                    <option value="" selected disabled hidden></option>
                                 </select>
                             </div>
                         @else
-                            <p class="font-semibold text-center mt-2">Pilih alamat terlebih dahulu</p>
+                            <p class="text-[15px] text-gray-400">
+                                *Anda belum menambahkan alamat tujuan pengiriman.
+                            </p>
                         @endif
 
 
                         @if (!empty($alamats) && count($alamats) > 0)
-                            <div class="flex justify-between border-y-[1px] pb-[2px] mt-1">
+                            <div class="flex justify-between my-5 text-gray-700 font-medium">
                                 <div class="flex w-full h-full">
-                                    <div class="flex font-medium break">
+                                    <div class="flex">
                                         <p class="flex items-center">
-                                            Ongkir:
+                                            Ongkir Anda: 
                                         </p>
                                     </div>
                                 </div>
-
                                 <div class="w-48">
-                                    <!-- You can also add buttons for updating quantity or removing the product -->
-                                    <div class="flex justify-between pl-4">
-                                        <p class="">
-                                            Rp.
-                                        </p>
-                                        <p class="ongkoskirim">0</p>
+                                    <div class="flex justify-end pl-4">
+                                        <p class="ongkoskirim">
+                                            0
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         @endif
-
-
-                        <a href="/create-alamat"
-                            class="bg-yellow-300 mt-12 w-full flex items-center justify-center h-9 font-bold hover:brightness-95 uppercase ">
+                        <a href="/create-alamat" class="bg-yellow-300 w-full py-1 mt-2 hover:brightness-95 justify-center flex items-center text-lg font-bold">
                             TAMBAH ALAMAT
                         </a>
                     </div>
-                    <div class="rounded-md flex-col h-fit flex my-5 px-5 py-4 bg-white text-sm border-[1px]">
+
+
+
+                    {{-- CHECKOUT --}}
+                    <div class="flex-col h-fit flex my-5 p-6 bg-white border border-gray-300">
                         <div class="">
-                            <p class="font-semibold text-lg uppercase flex justify-center underline pb-5">
+                            <p class="font-semibold text-lg uppercase flex justify-center underline">
                                 CHECKOUT
                             </p>
                         </div>
-
-
-
-                        @foreach ($cartItems as $product)
-                            <div class="container flex">
-                                <div class="flex w-full h-full">
-                                    <div class="flex font-medium break">
-                                        <p class="flex items-center">
-                                            {{ $product['nama_product'] }}
+                        <table class="w-full text-left mt-6">
+                            <thead>
+                                <tr class="text-gray-700 text-sm">
+                                    <th class="w-52 font-semibold uppercase">
+                                        BARANG
+                                    </th>
+                                    <th class="w-40 font-semibold uppercase">
+                                        <p class="justify-end flex">
+                                            HARGA TOTAL
                                         </p>
-                                    </div>
-                                </div>
-
-                                <div class="w-48">
-                                    <!-- You can also add buttons for updating quantity or removing the product -->
-                                    <div class="flex justify-between pl-4">
-                                        <p class="flex items-center">
-                                            Rp.
-                                        </p>
-                                        <p class="flex items-center">
-                                            {{ number_format($product['harga'] * $product['pivot']['kuantitas']) }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-
-
-                        <div class="flex justify-between border-y-[1px] pb-[2px] mt-1">
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($cartItems as $product)
+                                    <tr class="text-gray-600">
+                                        <td class="">
+                                            {{ $product['pivot']['kuantitas'] }}x 
+                                            {{ $product->nama_product }}
+                                        </td>
+                                        <td class="">
+                                            <p class="justify-end flex">
+                                                Rp. {{ number_format($product['harga'] * $product['pivot']['kuantitas']) }}
+                                            </p>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <div class="flex justify-between border-b-[1px] pb-1">
                             <div class="flex w-full h-full">
-                                <div class="flex font-medium break">
-                                    <p class="flex items-center">
-                                        Ongkir:
+                                <div class="flex">
+                                    <p class="flex items-center text-gray-700 font-semibold">
+                                        Ongkir: 
                                     </p>
                                 </div>
                             </div>
-
                             <div class="w-48">
-                                <!-- You can also add buttons for updating quantity or removing the product -->
-                                <div class="flex justify-between pl-4">
-                                    <p class="">
-                                        Rp.
+                                <div class="flex justify-end pl-4 text-gray-600">
+                                    <p class="ongkoskirim">
+                                        0
                                     </p>
-                                    <p class="ongkoskirim">0</p>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="flex justify-between mt-2">
-                            <div class="flex w-full h-full">
-                                <div class="flex font-medium break">
+                        <div class="mt-2">
+                            <div class="w-full">
+                                <div class="flex justify-between font-bold">
                                     <p class="font-bold uppercase flex items-center">
-                                        TOTAL HARGA:
+                                        TOTAL HARGA: 
+                                    </p>
+                                    <p class="flex items-center justify-end totalHarga">
+                                        Rp. {{ number_format($totalPrice) }}
                                     </p>
                                 </div>
                             </div>
-
-                            <div class="w-48">
-                                <!-- You can also add buttons for updating quantity or removing the product -->
-                                <div class="flex justify-between pl-4 font-bold">
-                                    <p class="flex items-center">
-                                        Rp.
-                                    </p>
-                                    <p class="flex items-center totalHarga">
-                                        {{ number_format($totalPrice) }}
-                                    </p>
+                            <div class="flex w-full">
+                                <div class="flex break">
+                                    @if (!empty($alamats) && count($alamats) > 0)
+                                        <p class="flex items-center"></p>
+                                    @else
+                                        <p class="text-[15px] text-gray-400 mt-3">
+                                            *Anda belum menambahkan alamat tujuan pengiriman.
+                                        </p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
-
-                        <button class="bg-yellow-300 mt-12 w-full h-9 font-bold hover:brightness-95 uppercase"
-                            type="button" id="checkoutButton">
-                            CHECKOUT
-                        </button>
+                        @if (!empty($alamats) && count($alamats) > 0)
+                            <button class="bg-yellow-300 w-full py-1 mt-2 hover:brightness-95 justify-center flex items-center text-lg font-bold" type="button" id="checkoutButton">
+                                CHECKOUT
+                            </button>
+                        @else
+                            <button class="bg-gray-300 w-full py-1 mt-2 cursor-not-allowed opacity-50 justify-center flex items-center text-lg font-bold" type="button" id="checkoutButton" disabled>
+                                CHECKOUT
+                            </button>
+                        @endif
                     </div>
                 </div>
             @else
-                <div
-                    class="container flex mx-auto my-8 p-5 pl-8 bg-white rounded-md shadow-md w-11/12 flex-col justify-between">
-                    <p class="text-gray-500 text-lg">
-                        Keranjang Anda kosong.
-                    </p>
+                <div class="container flex mx-auto my-8 p-5 pl-8 bg-white rounded-md shadow-md w-11/12 border-[1px] flex-col justify-between">
+                    <a href="/productmain" class="text-gray-400 text-lg items-center w-full h-full flex justify-center hover:text-[#0a2a74cb] transition duration-300 ease-in-out">
+                        Keranjang Anda kosong. Klik untuk melihat katalog produk
+                    </a>
                 </div>
             @endif
         </div>
+
+        <input type="hidden" name="kurir" id="nama_kurir" value="">
+        <input type="hidden" name="layanan" id="nama_layanan" value="">
+        <input type="hidden" name="ongkos_kirim" id="ongkos_kirim" value="">
 
         <script>
             $(document).ready(function() {
                 var harga_ongkir = 0;
 
                 const totalPrice = {!! json_encode($totalPrice) !!}
+
+                let selectedAlamatId = null;
 
                 $("#checkoutButton").click(function(event) {
                     event.preventDefault();
@@ -319,7 +326,11 @@
                                 productData: productData,
                                 totalPrice: totalPrice + harga_ongkir,
                                 id_cart: productData[0].pivot.id_cart,
-                                payment_status: 'pending'
+                                payment_status: 'pending',
+                                kurir: $('#nama_kurir').val(),
+                                layanan: $('#nama_layanan').val(),
+                                ongkos_kirim: $('#ongkos_kirim').val(),
+                                alamat_id: selectedAlamatId,
                             }),
                         })
                         .then(response => response.json())
@@ -343,19 +354,11 @@
 
                 // Gae ngerubah selected alamat
                 $('select[name="selected_address"]').on('change', function() {
-                    // Get the selected option
                     var selectedOption = $(this).find(':selected');
-
-                    // Get the city ID from the data attribute
                     var cityId = selectedOption.data('city-id');
-
-                    // Get the selected address text
                     var addressText = selectedOption.text();
-
-                    // Update the displayed address information
+                    selectedAlamatId = $(this).val();
                     $('#selected_address_text').text(addressText);
-
-                    // Log the selected city ID (optional)
                     console.log("Selected City ID:", cityId);
                 });
 
@@ -369,6 +372,9 @@
                     console.log(destination);
                     let courier = $("select[name=kurir]").val();
                     let weight = $("#totalWeight").val();
+
+                    $('#nama_kurir').val($("select[name=kurir]").find(':selected').text());
+
                     jQuery.ajax({
                         url: "/origin=" + origin + "&destination=" + destination + "&weight=" +
                             weight +
@@ -378,15 +384,13 @@
                         success: function(data) {
                             $('select[name="layanan"]').prop('disabled', false)
                             $('select[name="layanan"]').empty();
-                            // ini untuk looping data result nya
+
+
                             $('select[name="layanan"]').append($('<option>').attr('value', '').text(
                                 'Pilih Layanan'));
                             $.each(data, function(key, value) {
-                                // Loop through each service
                                 $.each(value.costs, function(key1, value1) {
-                                    // Loop through each cost
                                     $.each(value1.cost, function(key2, value2) {
-                                        // Append an option to the select element with the relevant data attributes
                                         $('select[name="layanan"]').append(
                                             $('<option>').attr('value',
                                                 key)
@@ -404,6 +408,8 @@
                                     });
                                 });
                             });
+                            let defaultLayanan = $('select[name="layanan"]').find(':selected');
+                            updateLayananHiddenInput(defaultLayanan);
                         }
                     });
                 });
@@ -412,6 +418,7 @@
                 $('select[name="layanan"]').on('change', function() {
                     // Get the selected option
                     var selectedOption = $(this).find(':selected');
+                    updateLayananHiddenInput(selectedOption);
 
                     // Retrieve the data-value attribute
                     harga_ongkir = selectedOption.data("value");
@@ -426,10 +433,16 @@
 
                     // Menampilkan hasil nama harga ongkir dari select layanan yang kita pilih
                     $(".ongkoskirim").text(number_format.format(harga_ongkir));
+                    $('#ongkos_kirim').val(harga_ongkir);
                     $(".totalHarga").text(number_format.format(totalHarga));
                 });
 
-
+                function updateLayananHiddenInput(selectedOption) {
+                    // Set the selected layanan to the hidden input
+                    $('#nama_layanan').val(selectedOption.attr('data-service') + ' - ' +
+                        selectedOption.attr('data-description') + ' - ' +
+                        selectedOption.attr('data-value'));
+                }
 
             });
         </script>

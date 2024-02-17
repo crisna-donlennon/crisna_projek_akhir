@@ -18,9 +18,15 @@
             </p>
 
             <div class="space-x-6 text-sm">
-                <a href="/home" class="text-white hover:text-blue-300 transition duration-300 ease-in-out pr-5">HOME</a>
-                <a href="/productmain" class="text-white hover:text-blue-300 transition duration-300 ease-in-out pr-5">PRODUCTS</a>
-                <a href="#" class="text-white hover:text-blue-300 transition duration-300 ease-in-out pr-5">ABOUT</a>
+                <a href="/home" class="text-white hover:text-yellow-300 transition duration-300 ease-in-out pr-5">
+                    HOME
+                </a>
+                <a href="/productmain" class="text-white hover:text-yellow-300 transition duration-300 ease-in-out pr-5">
+                    PRODUCTS
+                </a>
+                <a href="#" class="text-white hover:text-yellow-300 transition duration-300 ease-in-out pr-5">
+                    ABOUT
+                </a>
             </div>
         </div>
     </div>

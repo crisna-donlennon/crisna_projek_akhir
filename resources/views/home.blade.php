@@ -41,14 +41,16 @@
 
 <main class="bg-slate-400 container mx-auto min-w-full pb-5 pt-10 px-10">
     <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-4">Kategori</h2>
+        <h2 class="text-2xl font-semibold mb-4">
+            Kategori
+        </h2>
         <div class="flex space-x-4">
-            <!-- Category Cards go here -->
             <div class="bg-white p-4 rounded-md shadow-md flex items-center">
                 <img src="category1.jpg" alt="Category 1" class="w-16 h-16 object-cover rounded-full">
-                <span class="ml-4 text-lg font-semibold">Category 1</span>
+                <span class="ml-4 text-lg font-semibold">
+                    Category 1
+                </span>
             </div>
-            <!-- Repeat similar structure for other categories -->
         </div>
     </section>
 </main>
@@ -70,7 +72,9 @@
                                 <div class="bg-gray-50 w-full flex justify-center border">
                                     <img class="w-[150px] h-[200px] object-cover" src="{{ asset('storage/' . $product->gambar) }}" alt="Product 1">
                                 </div>
-                                <p class="font-semibold mt-2 mb-2 text-lg">{{ $product->nama_product }}</p>
+                                <p class="font-semibold mt-2 mb-2 text-lg">
+                                    {{ $product->nama_product }}
+                                </p>
                                 <div class="break-all uppercase rounded-2xl w-fit px-2 border-2">
                                     <p class="font-semibold text-xs">
                                         {{ $product->type->nama_type }}
@@ -86,13 +90,9 @@
                                         @method('post')
                                         <input type="hidden" value="{{ $product->id }}" name="id_product">
                                         <input type="hidden" value="1" name="kuantitas">
-                                            <button type="submit" class="bg-yellow-300 w-16 h-9 font-bold hover:brightness-95 uppercase">
+                                            <button type="submit" class="bg-yellow-300 w-16 h-9 font-bold hover:brightness-95 uppercase rounded-md">
                                                 BELI
                                             </button>
-                                            {{-- <div>
-                                                <p>Stok: </p>
-                                                <p>{{ $product->stok }}</p>
-                                            </div> --}}
                                     </form>
                                 </div>
                             </div>
@@ -102,11 +102,16 @@
             </div>
         </div>
 
-        <div class="bg-yellow-300 w-full py-1 mt-8 hover:brightness-95 justify-center flex">
-            <a href="/productmain" class="items-center justify-center flex text-2xl font-bold">
-                Temukan Lebih Banyak Produk ->
-            </a>
-        </div>
+        <a href="/productmain" class="">
+            <div class="bg-yellow-300 w-full py-1 mt-8 hover:brightness-95 justify-center flex active:scale-95 transition-all">
+                <p class="items-center justify-center flex text-2xl font-bold">
+                    Temukan Lebih Banyak Produk 
+                    <svg class="w-7 h-7 text-gray-800 dark:text-white ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-width="3" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" transform="scale (-1, 1)" transform-origin="center"/>
+                    </svg>
+                </p>
+            </div>
+        </a>
     </section>
 </main>
 
@@ -140,13 +145,15 @@
             </div>
             <div class="flex justify-center items-center p-5 ml-10 mr-16 border-[3px] rounded-xl border-[#0A2974]">
                 <svg class="w-20 h-20 text-[#0A2974] dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" d="M12 14v3m-3-6V7a3 3 0 1 1 6 0v4m-8 0h10c.6 0 1 .4 1 1v7c0 .6-.4 1-1 1H7a1 1 0 0 1-1-1v-7c0-.6.4-1 1-1Z"/>
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a9 9 0 0 0 5-1.5 4 4 0 0 0-4-3.5h-2a4 4 0 0 0-4 3.5 9 9 0 0 0 5 1.5Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
                 </svg>
             </div>
             <div class="w-full flex">
                 <p class="font-semibold h-fit w-fit">
-                    <strong class="font-bold">REGISTRASI/LOGIN</strong>
-                    – Buat akun baru dengan mengisi data Anda pada form registrasi, atau lakukan login jika sudah mempunyai akun.
+                    <strong class="font-bold">
+                        REGISTRASI/LOGIN
+                    </strong>
+                    – Buat akun baru dengan mengisi data Anda pada form registrasi, atau login jika sudah memiliki akun.
                 </p>
             </div>
         </div>
@@ -160,11 +167,13 @@
                 <svg class="w-20 h-20 text-[#0A2974] dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
                 </svg>
-            </div>
+                </div>
             <div class="w-full flex">
                 <p class="font-semibold h-fit w-fit">
-                    <strong class="font-bold">CARI PRODUK</strong>
-                    – Pilih barang sesuai kebutuhan yang Anda cari.
+                    <strong class="font-bold">
+                        CARI PRODUK
+                    </strong>
+                    – Pilih barang sesuai kebutuhan yang Anda cari pada laman PRODUK.
                 </p>
             </div>
         </div>
@@ -176,12 +185,14 @@
             </div>
             <div class="flex justify-center items-center p-5 ml-10 mr-16 border-[3px] rounded-xl border-[#0A2974]">
                 <svg class="w-20 h-20 text-[#0A2974] dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.8-3H7.4M11 7H6.3M17 4v6m-3-3h6"/>
-                </svg>
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 17h6m-3 3v-6M4.9 4H9c.5 0 .9.4.9.9V9c0 .5-.4.9-.9.9H5a.9.9 0 0 1-.9-.9V5c0-.5.4-.9.9-.9Zm10 0H19c.5 0 .9.4.9.9V9c0 .5-.4.9-.9.9h-4a.9.9 0 0 1-.9-.9V5c0-.5.4-.9.9-.9Zm-10 10H9c.5 0 .9.4.9.9V19c0 .5-.4.9-.9.9H5a.9.9 0 0 1-.9-.9v-4c0-.5.4-.9.9-.9Z"/>
+                </svg>         
             </div>
             <div class="w-full flex">
                 <p class="font-semibold h-fit w-fit">
-                    <strong class="font-bold">ADD TO CART</strong>
+                    <strong class="font-bold">
+                        ADD TO CART
+                    </strong>
                     – Klik "BELI" untuk menambahkan barang ke keranjang belanja anda.
                 </p>
             </div>
@@ -194,13 +205,15 @@
             </div>
             <div class="flex justify-center items-center p-5 ml-10 mr-16 border-[3px] rounded-xl border-[#0A2974]">
                 <svg class="w-20 h-20 text-[#0A2974] dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 10V6a3 3 0 0 1 3-3v0a3 3 0 0 1 3 3v4m3-2 1 12c0 .5-.5 1-1 1H6a1 1 0 0 1-1-1L6 8h12Z"/>
-                </svg>
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.3L19 7h-1M8 7h-.7M13 5v4m-2-2h4"/>
+                </svg>   
             </div>
             <div class="w-full flex">
                 <p class="font-semibold h-fit w-fit">
-                    <strong class="font-bold">CART</strong>
-                    – Barang akan ditambahkan kedalam keranjang belanja/CART. Periksa kembali belanjaan Anda. Anda dapat menambah dan mengurangi jumlah barang atau menghapus barang pada CART.
+                    <strong class="font-bold">
+                        CART
+                    </strong>
+                    – Periksa kembali belanjaan Anda pada CART. Anda dapat menambah dan mengurangi jumlah barang, atau menghapus barang pada CART Anda.
                 </p>
             </div>
         </div>
@@ -212,13 +225,17 @@
             </div>
             <div class="flex justify-center items-center p-5 ml-10 mr-16 border-[3px] rounded-xl border-[#0A2974]">
                 <svg class="w-20 h-20 text-[#0A2974] dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" d="M3 10h18M6 14h2m3 0h5M3 7v10c0 .6.4 1 1 1h16c.6 0 1-.4 1-1V7c0-.6-.4-1-1-1H4a1 1 0 0 0-1 1Z"/>
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10h18M6 14h2m3 0h5M3 7v10c0 .6.4 1 1 1h16c.6 0 1-.4 1-1V7c0-.6-.4-1-1-1H4a1 1 0 0 0-1 1Z"/>
                 </svg>
             </div>
             <div class="w-full flex">
                 <p class="font-semibold h-fit w-fit">
-                    <strong class="font-bold">CHECKOUT</strong>
-                    – Klik "CHECKOUT" dari dalam CART Anda untuk lanjut ke proses pembayaran. Pilih pembayaran melalui rekening yang anda punya dengan saldo cukup.
+                    <strong class="font-bold">
+                        CHECKOUT
+                    </strong>
+                    – Pilih atau buat alamat sebelum "CHECKOUT". Lalu tentukan ekspedisi. Jika sudah, klik "CHECKOUT" untuk proses pembayaran. 
+                    Anda dapat membayar langsung melalui rekening dengan saldo cukup.
+                    Atau menyimpan sementara pesanan jika ingin dibayar nanti.
                 </p>
             </div>
         </div>
@@ -230,37 +247,21 @@
             </div>
             <div class="flex justify-center items-center p-5 ml-10 mr-16 border-[3px] rounded-xl border-[#0A2974]">
                 <svg class="w-20 h-20 text-[#0A2974] dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-width="1.4" d="m3.5 5.5 7.9 6c.4.3.8.3 1.2 0l7.9-6M4 19h16c.6 0 1-.4 1-1V6c0-.6-.4-1-1-1H4a1 1 0 0 0-1 1v12c0 .6.4 1 1 1Z"/>
-                </svg>
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 8h6m-6 4h6m-6 4h6M6 3v18l2-2 2 2 2-2 2 2 2-2 2 2V3l-2 2-2-2-2 2-2-2-2 2-2-2Z"/>
+                </svg>            
             </div>
             <div class="w-full flex">
                 <p class="font-semibold h-fit w-fit">
-                    <strong class="font-bold">CHECK EMAIL</strong>
-                    – Setelah order terkonfirmasi, Invoice akan dikirimkan ke email anda. Cek Email untuk lakukan pembayaran.
-                </p>
-            </div>
-        </div>
-        <div class="flex justify-start w-full">
-            <div class="">
-                <p class="font-bold text-xl">
-                    7. 
-                </p>
-            </div>
-            <div class="flex justify-center items-center p-5 ml-10 mr-16 border-[3px] rounded-xl border-[#0A2974]">
-                <svg class="w-20 h-20 text-[#0A2974] dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" d="M15 4h3c.6 0 1 .4 1 1v15c0 .6-.4 1-1 1H6a1 1 0 0 1-1-1V5c0-.6.4-1 1-1h3m0 3h6m-6 7 2 2 4-4m-5-9v4h4V3h-4Z"/>
-                </svg>
-            </div>
-            <div class="w-full flex">
-                <p class="font-semibold h-fit w-fit">
-                    <strong class="font-bold">SHIPPING CONFIRMATION</strong>
-                    – Status pengiriman akan kita update melalui email.
+                    <strong class="font-bold">
+                        PESANAN
+                    </strong>
+                    – Pesanan yang belum dibayar akan masuk ke laman PESANAN PENDING, anda dapat bayar di sana. Pesanan yang sudah dibayar akan masuk ke laman PESANAN PAID untuk menunggu proses dan persetujuan dari admin kami.
                 </p>
             </div>
         </div>
     </div>
 </main>
 
-    {{-- FOOTER --}}
-    <x-footer />
+{{-- FOOTER --}}
+<x-footer />
 @endsection

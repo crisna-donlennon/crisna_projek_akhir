@@ -41,7 +41,11 @@ Route::middleware(['guest'])->group(function () {
 
 // DASHBOARD
 Route::middleware(['auth'])->group(function () {
+    Route::get('/account', [AuthenticationController::class, 'index'])->name('account.index');
+    Route::patch('/account', [AuthenticationController::class, 'update'])->name('account.update');
     Route::patch('/dashboard/user/{id}/update-role', [AuthenticationController::class, 'updaterole'])->name('user.update');
+
+    
     Route::middleware(['checkUserRole:admin,pemilik'])->group(function () {
         // USER
         Route::get('/dashboard', [DashboardController::class, 'UserView'])->name('dashboard.user');
@@ -95,6 +99,4 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/order/pesanan-pending', [OrderController::class, 'PesananPendingView'])->name('order.PesananPendingView');
     Route::get('/order/pesanan-paid', [OrderController::class, 'PesananPaidView'])->name('order.PesananPaidView');
 
-    Route::get('/account', [AuthenticationController::class, 'index'])->name('account.index');
-    Route::patch('/account', [AuthenticationController::class, 'update'])->name('account.update');
 });

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama_product');
             $table->decimal('harga', 10, 2);
             $table->integer('kuantitas');
+            $table->double('berat');
             $table->timestamps();
         });
     }

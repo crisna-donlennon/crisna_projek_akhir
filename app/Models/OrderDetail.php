@@ -23,4 +23,9 @@ class OrderDetail extends Model
     {
         return $this->belongsTo(User::class, 'id_user');
     }
+
+    public function alamat()
+    {
+        return $this->belongsTo(Alamat::class, 'alamat_id');
+    }
 }

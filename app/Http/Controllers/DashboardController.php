@@ -33,6 +33,9 @@ class DashboardController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('dashboard.invoice', ['orderData' => $orderData]);
+        // Group orders by their status
+        $groupedOrders = $orderData->groupBy('status');
+
+        return view('dashboard.invoice', ['groupedOrders' => $groupedOrders]);
     }
 }

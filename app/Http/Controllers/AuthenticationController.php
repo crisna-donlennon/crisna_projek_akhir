@@ -32,8 +32,8 @@ class AuthenticationController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|unique:users,email|email',
             'password' => 'required|confirmed',
-            'roles' => 'required',
-            'alamat' => 'required|string',
+            // 'roles' => 'required',
+            // 'alamat' => 'required|string',
             'nomor_hp' => 'required|string'
         ]);        
 
@@ -49,7 +49,7 @@ class AuthenticationController extends Controller
             $request->session()->regenerate();
             return redirect()->intended('/home')->with('success', 'Sign Up Successfull');
         }            
-        return back()->with('LoginError' , 'LoginFailed');
+        return back()->with('error', 'Registration Failed!');
     }
 
 // ADMIN REGISTRATION
@@ -60,7 +60,7 @@ class AuthenticationController extends Controller
             'email' => 'required|unique:users,email|email',
             'password' => 'required|confirmed',
             'roles' => 'required',
-            'alamat' => 'required|string',
+            // 'alamat' => 'required|string',
             'nomor_hp' => 'required|string'
         ]);
 
@@ -76,7 +76,7 @@ class AuthenticationController extends Controller
             $request->session()->regenerate();
             return redirect()->intended('/home')->with('success', 'Sign Up Successfull');
         }
-        return back()->with('error', 'Registrasi Gagal!');
+        return back()->with('error', 'Registration Failed!');
     }
 
     // LOGOUTATION
@@ -157,21 +157,14 @@ class AuthenticationController extends Controller
     public function update(Request $request)
     {
         $user = Auth::user();
-
+        
         $request->validate([
-            'name' => 'required|string|max:255',
-            'alamat' => 'required|string',
-            'nomor_hp' => 'required|string',
-            'password' => 'nullable|confirmed|min:8', // You can adjust validation rules for the password
+            'name' => 'string|max:255',
+            'nomor_hp' => 'string',
         ]);
-
+        
         $user->name = $request->input('name');
-        $user->alamat = $request->input('alamat');
         $user->nomor_hp = $request->input('nomor_hp');
-
-        if ($request->filled('password')) {
-            $user->password = Hash::make($request->input('password'));
-        }
 
         $user->save();
 
