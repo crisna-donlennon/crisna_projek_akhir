@@ -47,6 +47,7 @@
             </div>
 
 
+
             {{-- PRODUCT --}}
             <div id="product-container"
                 class="grid gap-3 text-sm mb-6 overflow-y-scroll overflow-hidden pb-3 h-[840px] w-full
@@ -62,7 +63,7 @@
                                 <div class="bg-gray-50 w-full flex justify-center border">
                                     <img class="w-[150px] h-[200px] object-cover" src="{{ asset('storage/' . $product->gambar) }}" alt="Product 1">
                                 </div>
-                                <p class="font-semibold mt-2 mb-2 text-lg">
+                                <p class="font-semibold mt-2 mb-2 text-lg line-clamp-1">
                                     {{ $product->nama_product }}
                                 </p>
                                 <div class="break-all uppercase rounded-2xl w-fit px-2 border-2">

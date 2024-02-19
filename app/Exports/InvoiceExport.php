@@ -31,13 +31,18 @@ class InvoiceExport implements FromView, ShouldAutoSize, WithStyles
         $styleArray = [
             'borders' => [
                 'outline' => [
-                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_MEDIUM,
                     'color' => ['argb' => '000000'],
                 ],
             ],
             'font' => [
                 'bold' => true,
             ],
+            'alignment' => [
+                'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_TOP,
+                'wrapText' => true,
+            ],
+            
         ];
 
         // Apply styles to a range of cells, for example, A1 to G10

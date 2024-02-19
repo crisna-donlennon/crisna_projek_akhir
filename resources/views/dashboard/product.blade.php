@@ -6,14 +6,14 @@
         PRODUCTS
     </p>
     <a href="/dashboard/create-product">
-        <button type="button" class="flex text-gray-500 hover:text-[#0A2974]">
+        <button type="button" class="flex text-gray-500 hover:text-[#0A2974] uppercase">
             <svg class="w-7 h-7" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                 fill="none" viewBox="0 0 20 20">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M10 5.757v8.486M5.757 10h8.486M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
             </svg>
             <p class="ml-2 pt-[1px] font-medium">
-                Tambahkan Produk
+                TAMBAHKAN PRODUK
             </p>
         </button>
     </a>

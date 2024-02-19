@@ -2,17 +2,13 @@
 
 @section('container')
 {{-- CAROUSEL --}}
-<div class="w-ful
-          xl:bg-red-200 lg:bg-blue-200 md:bg-green-300 sm:bg-yellow-200 min-[320px] max-[640px]:bg-purple-300
-            xl:h-[500px] lg:h-[450px] md:h-[400px] sm:h-[350px] min-[320px] max-[640px]:h-[250px]">
-    <div class="glide w-full h-[500px]
-                xl:h-[500px] lg:h-[450px] md:h-[400px] sm:h-[350px] min-[320px] max-[640px]:h-[250px]">
-        <div class="glide__track w-full" data-glide-el="track">
-            <ul class="glide__slides w-full
-                       xl:h-[500px] lg:h-[450px] md:h-[400px] sm:h-[350px] min-[320px] max-[640px]:h-[250px]">
-                <li class="glide__slide"><img class="w-full object-cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpIydx0f-iLo-mn6I27wtO_22LrN35TJCJmQ&usqp=CAU" alt="Image 1"></li>
-                <li class="glide__slide"><img class="w-full object-cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd-ETt9QxodObUGkFPQDl9hIBFYSM8jyTj9w&usqp=CAU" alt="Image 2"></li>
-                <li class="glide__slide"><img class="w-full object-cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMIa956G5ODqyVmXUePBjgRZtxZZ9Fx_eyPw&usqp=CAU" alt="Image 3"></li>
+<div class="bg-[#0A2974] w-full h-[500px]">
+    <div class="glide w-full h-[500px]">
+        <div class="glide__track w-full h-[500px]" data-glide-el="track">
+            <ul class="glide__slides w-full h-[500px] object-cover">
+                <li class="glide__slide"><img src="{{ asset('storage/assets/FOTO/Cleaning-Equipments.jpg') }}" alt="carousel-1" class="w-full"></li>
+                <li class="glide__slide"><img src="{{ asset('storage/assets/FOTO/assortment-of-cleaning-tools-1024x680.jpg') }}" alt="carousel-2" class="w-full"></li>
+                <li class="glide__slide"><img src="{{ asset('storage/assets/FOTO/karcherwindowjpg.webp') }}" alt="carousel-3" class="w-full"></li>
             </ul>
         </div>
         <div class="glide__arrows" data-glide-el="controls">
@@ -95,6 +91,8 @@
     </section>
 </main>
 
+
+
 {{-- MAIN PAGE --}}
 <main class="container mx-auto pb-5 pt-10 px-16" id="product">
     <section class="mb-8">
@@ -118,7 +116,7 @@
                                 <div class="bg-gray-50 w-full flex justify-center border">
                                     <img class="w-[150px] h-[200px] object-cover" src="{{ asset('storage/' . $product->gambar) }}" alt="Product 1">
                                 </div>
-                                <p class="font-semibold mt-2 mb-2 text-lg">
+                                <p class="font-semibold mt-2 mb-2 text-lg line-clamp-2">
                                     {{ $product->nama_product }}
                                 </p>
                                 <div class="break-all uppercase rounded-2xl w-fit px-2 border-2">

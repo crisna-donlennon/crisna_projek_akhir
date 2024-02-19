@@ -90,35 +90,35 @@
 </div>
 
 <script>
-    // Initialize DataTables
-    $(document).ready( function () {
-        $('#invoice-table').DataTable({
-            "order": [[0, 1, 3, 4, 6, "asc"]], // Sort by the first column (Tanggal) in ascending order
-            "columnDefs": [
-                { "orderable": false, "targets": [2, 5] } // Disable sorting for other columns
-            ]
-        });
-    });
+    // // Initialize DataTables
+    // $(document).ready( function () {
+    //     $('#invoice-table').DataTable({
+    //         "order": [[0, 1, 3, 4, 6, "asc"]], // Sort by the first column (Tanggal) in ascending order
+    //         "columnDefs": [
+    //             { "orderable": false, "targets": [2, 5] } // Disable sorting for other columns
+    //         ]
+    //     });
+    // });
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const invoiceRows = document.querySelectorAll('.invoice-row');
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     const invoiceRows = document.querySelectorAll('.invoice-row');
 
-        invoiceRows.forEach(function(invoiceRow) {
-            invoiceRow.addEventListener('click', function() {
-                const invoiceId = invoiceRow.dataset.invoiceId;
-                const invoiceDiv = document.getElementById(`invoice_${invoiceId}`);
-                const closeInvoiceButton = document.getElementById(`closeInvoice_${invoiceId}`);
+    //     invoiceRows.forEach(function(invoiceRow) {
+    //         invoiceRow.addEventListener('click', function() {
+    //             const invoiceId = invoiceRow.dataset.invoiceId;
+    //             const invoiceDiv = document.getElementById(`invoice_${invoiceId}`);
+    //             const closeInvoiceButton = document.getElementById(`closeInvoice_${invoiceId}`);
 
-                if (invoiceDiv) {
-                    invoiceDiv.classList.toggle('hidden');
-                }
+    //             if (invoiceDiv) {
+    //                 invoiceDiv.classList.toggle('hidden');
+    //             }
 
-                if (closeInvoiceButton) {
-                    closeInvoiceButton.addEventListener('click', () => {
-                        invoiceDiv.classList.add('hidden');
-                    });
-                }
-            });
-        });
-    });
+    //             if (closeInvoiceButton) {
+    //                 closeInvoiceButton.addEventListener('click', () => {
+    //                     invoiceDiv.classList.add('hidden');
+    //                 });
+    //             }
+    //         });
+    //     });
+    // });
 </script>

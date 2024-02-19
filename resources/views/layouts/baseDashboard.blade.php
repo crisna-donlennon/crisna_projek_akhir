@@ -57,10 +57,13 @@
                         </path>
                     </svg>
                 </button>
-                <a href="https://flowbite.com" class="flex ms-2 md:me-24">
-                    <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 me-3" alt="FlowBite Logo" />
-                    <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Flowbite</span>
-                </a>
+
+                <div class="relative text-left w-full z-40 justify-start items-start flex">
+                    <div class="bg-[#0A2974] ml-2">
+                        <img src="{{ asset('storage/assets/FOTO/cleansweep-logo.png') }}" alt="Clean-sweep Logo" class="w-10">
+                    </div>
+                </div>
+            
                 <a href="/home">
                     <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm p-2 px-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Kembali</button>
                 </a>

@@ -1,6 +1,11 @@
 <div class="bg-slate-200 text-black pt-14 pb-5 w-full z-40 border-b-2 border-gray-400 flex justify-end items-center leading-5 gap-7
             xl:h-28 lg:h-28 md:h-28 sm:h-24 min-[320px] max-[640px]:h-24
             xl:pr-10 lg:pr-8 md:pr-7 sm:pr-5 min-[320px] max-[640px]:pr-5">
+    <div class="relative text-left w-full z-40 justify-start items-start flex">
+        <div class="bg-[#0A2974] p-2 ml-3">
+            <img src="{{ asset('storage/assets/FOTO/cleansweep-logo.png') }}" alt="Clean-sweep Logo" class="w-14">
+        </div>
+    </div>
     @auth
         <a href="/cart" class="pr-5 border-r-2 border-black">
             <div class="relative w-fit pr-1 pt-1 h-fit">

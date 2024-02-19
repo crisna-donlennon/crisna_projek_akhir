@@ -5,8 +5,18 @@
     <p class="text-lg flex w-fit font-semibold">
         INVOICES
     </p>
-    <a href="/dashboard/invoice/export_excel" class="btn btn-primary" target="_blank">
-        CETAK EXCEL
+    <a href="/dashboard/invoice/export_excel" class="btn btn-primary font-medium text-gray-500 hover:text-[#0A2974] flex align-middle items-center" target="_blank">
+        
+    </a>
+    <a href="/dashboard/create-product">
+        <button type="button" class="flex text-gray-500 hover:text-[#0A2974] uppercase">
+            <svg class="w-7 h-7" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"/>
+            </svg>            
+            <p class="ml-2 pt-[1px] font-medium">
+                CETAK EXCEL
+            </p>
+        </button>
     </a>
 </div>
 @endsection
@@ -19,9 +29,9 @@
                     <th scope="col" class="px-4 py-2">
                         Tanggal
                     </th>
-                    {{-- <th scope="col" class="px-4 py-2">
+                    <th scope="col" class="px-4 py-2">
                         Status
-                    </th> --}}
+                    </th>
                     <th scope="col" class="px-4 py-2">
                         Order ID
                     </th>
@@ -55,7 +65,7 @@
                             <td class="px-4 py-2">
                                 {{ $order->created_at }}
                             </td>
-                            {{-- <td class="px-4 py-2">
+                            <td class="px-4 py-2">
                                 @if ($order->status == 'Menunggu Konfirmasi')
                                     <span class="text-orange-400 tracking-tight dark:text-white flex uppercase">
                                         {{ $order->status }}
@@ -69,7 +79,7 @@
                                         {{ $order->status }}
                                     </span>
                                 @endif
-                            </td> --}}
+                            </td>
                             <td class="px-4 py-2">
                                 {{ $order->unique_string }}
                             </td>
@@ -257,9 +267,9 @@
         // Initialize DataTables
         $(document).ready( function () {
             $('#invoice-table').DataTable({
-                "order": [[0, 1, 3, 4, 6, "asc"]], // Sort by the first column (Tanggal) in ascending order
+                "order": [[0, 1, 3, 4, 5, "asc"]], // Sort by the first column (Tanggal) in ascending order
                 "columnDefs": [
-                    { "orderable": false, "targets": [2, 5] } // Disable sorting for other columns
+                    { "orderable": false, "targets": [2, 7] } // Disable sorting for other columns
                 ]
             });
         });
