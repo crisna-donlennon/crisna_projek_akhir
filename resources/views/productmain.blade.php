@@ -10,9 +10,13 @@
             <input type="text" id="productSearch" class="border rounded p-2 w-full" placeholder="Cari berdasarkan nama produk...">
         </div>
 
-        {{-- TYPE --}}
-        <div class="flex justify-between">
-            <div class="mx-auto w-[280px] mr-7 mb-10">
+        <div class="
+        xl:flex lg: md: sm: min-[320px] max-[640px]:
+        xl:justify-between lg: md: sm: min-[320px] max-[640px]:">
+      
+            {{-- TYPE --}}
+            <div class="mx-auto mr-7 mb-10
+            xl:w-[280px] lg: md: sm: min-[320px] max-[640px]:w-full">
                 <table class="border border-gray-300 w-full">
                     <thead class="">
                         <tr class="">
@@ -45,9 +49,14 @@
 
             {{-- PRODUCT --}}
             <div id="product-container"
-                class="w-full grid grid-cols-4 gap-3 text-sm mb-6 overflow-y-scroll overflow-hidden h-[830px] pb-3">
+                class="grid gap-3 text-sm mb-6 overflow-y-scroll overflow-hidden pb-3 h-[840px] w-full
+                xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 min-[320px] max-[640px]:grid-cols-2
+                xl: lg: md: sm: min-[320px] max-[640px]:">
+
                 @foreach ($products as $product)
-                    <div data-type-id="{{ $product->type->id }}" class="product-card bg-white p-4 rounded-md relative shadow-md w-[213px] h-[400px] flex flex-col justify-between border-[1px]">
+                    <div data-type-id="{{ $product->type->id }}" class="product-card bg-white p-4 rounded-md relative shadow-md flex flex-col justify-between border-[1px]
+                        xl:w-[213px] lg: md: sm: min-[320px] max-[640px]:
+                        xl:h-[400px] lg: md: sm: min-[320px] max-[640px]:">
                         <a href="/product/{{ $product->id }}" class="" >
                             <div class="">
                                 <div class="bg-gray-50 w-full flex justify-center border">

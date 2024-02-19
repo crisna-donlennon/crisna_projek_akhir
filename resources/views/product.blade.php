@@ -1,16 +1,14 @@
 @extends('layouts.base')
 
 @section('container')
-  
-<a href="/home">
-    <button type="button" class="relative left-8 top-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-        Kembali
-    </button>
-</a>
+<div class="bg-white container mx-auto my-8 p-8 rounded-md shadow-md flex flex-col border-[1px]
+xl:w-2/3 lg:w-2/3 md:w-2/3 sm: min-[320px] max-[640px]:w-full">
 
-<div class="bg-white container mx-auto my-8 p-8 rounded-md shadow-md w-2/3 flex flex-col border-[1px]">    
-    <div class="h-[320px] w-full flex">
-        <img class="w-[240px] h-[320px] object-cover" src="{{ asset('storage/'.$product[0]->gambar) }}" alt="Product Image">
+    <div class="w-full flex
+    xl:h-[320px] lg: md: sm: min-[320px] max-[640px]:">
+        <img class="w-[240px] h-[320px] object-cover
+        xl: lg: md: sm: min-[320px] max-[640px]:
+        xl: lg: md: sm: min-[320px] max-[640px]:" src="{{ asset('storage/'.$product[0]->gambar) }}" alt="Product Image">
         <div class="px-5 w-full">
             <div class="pb-2 border-b-2 w-fit">
                 <h1 class="text-4xl font-bold">{{ $product[0]->nama_product }}</h1>

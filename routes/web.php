@@ -74,6 +74,8 @@ Route::middleware(['auth'])->group(function () {
 
         // INVOICE
         Route::get('/dashboard/invoice', [DashboardController::class, 'InvoiceView'])->name('dashboard.invoice');
+        // Route::get('/dashboard/invoice/cetak_pdf', [DashboardController::class, 'cetak_pdf'])->name('invoice.pdf');
+        Route::get('/dashboard/invoice/export_excel', [DashboardController::class, 'export_excel'])->name('invoice.excel');
     });
 
     Route::get('/create-alamat', [AlamatController::class, 'create'])->name('alamat.create');

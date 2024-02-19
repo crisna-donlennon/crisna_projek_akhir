@@ -2,14 +2,17 @@
 
 @section('container')
 {{-- CAROUSEL --}}
-<div class="bg-red-500 w-full h-[500px]">
-    <div class="glide w-full h-[500px]">
-        <div class="glide__track w-full h-[500px]" data-glide-el="track">
-            <ul class="glide__slides w-full h-[500px]">
-                <li class="glide__slide"><img class="w-full h-full object-cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpIydx0f-iLo-mn6I27wtO_22LrN35TJCJmQ&usqp=CAU" alt="Image 1"></li>
-                <li class="glide__slide"><img class="w-full h-full object-cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd-ETt9QxodObUGkFPQDl9hIBFYSM8jyTj9w&usqp=CAU" alt="Image 2"></li>
-                <li class="glide__slide"><img class="w-full h-full object-cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMIa956G5ODqyVmXUePBjgRZtxZZ9Fx_eyPw&usqp=CAU" alt="Image 3"></li>
-                <!-- Add more slides as needed -->
+<div class="w-ful
+          xl:bg-red-200 lg:bg-blue-200 md:bg-green-300 sm:bg-yellow-200 min-[320px] max-[640px]:bg-purple-300
+            xl:h-[500px] lg:h-[450px] md:h-[400px] sm:h-[350px] min-[320px] max-[640px]:h-[250px]">
+    <div class="glide w-full h-[500px]
+                xl:h-[500px] lg:h-[450px] md:h-[400px] sm:h-[350px] min-[320px] max-[640px]:h-[250px]">
+        <div class="glide__track w-full" data-glide-el="track">
+            <ul class="glide__slides w-full
+                       xl:h-[500px] lg:h-[450px] md:h-[400px] sm:h-[350px] min-[320px] max-[640px]:h-[250px]">
+                <li class="glide__slide"><img class="w-full object-cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpIydx0f-iLo-mn6I27wtO_22LrN35TJCJmQ&usqp=CAU" alt="Image 1"></li>
+                <li class="glide__slide"><img class="w-full object-cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd-ETt9QxodObUGkFPQDl9hIBFYSM8jyTj9w&usqp=CAU" alt="Image 2"></li>
+                <li class="glide__slide"><img class="w-full object-cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMIa956G5ODqyVmXUePBjgRZtxZZ9Fx_eyPw&usqp=CAU" alt="Image 3"></li>
             </ul>
         </div>
         <div class="glide__arrows" data-glide-el="controls">
@@ -39,35 +42,78 @@
     });
 </script>
 
-<main class="bg-slate-400 container mx-auto min-w-full pb-5 pt-10 px-10">
-    <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-4">
-            Kategori
-        </h2>
-        <div class="flex space-x-4">
-            <div class="bg-white p-4 rounded-md shadow-md flex items-center">
-                <img src="category1.jpg" alt="Category 1" class="w-16 h-16 object-cover rounded-full">
-                <span class="ml-4 text-lg font-semibold">
-                    Category 1
-                </span>
-            </div>
+<main class="bg-[#0A2974] w-full flex justify-center border-y-2">
+    <section class="flex justify-between px-7 w-full">
+        <div class="text-yellow-300 w-1/4 h-32 my-2 flex flex-col align-middle items-center justify-center">
+            <svg class="text-yellow-300 dark:text-white
+                            xl:w-16 lg:w-16 md:w-14 sm:w-12 min-[320px] max-[640px]:w-12
+                            xl:h-16 lg:h-16 md:h-14 sm:h-12 min-[320px] max-[640px]:h-12
+                            xl: lg: md: sm: min-[320px] max-[640px]:mt-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 11c.9 0 1.4-.5 2.2-1a33.3 33.3 0 0 0 4.5-5.8 1.5 1.5 0 0 1 2 .3 1.6 1.6 0 0 1 .4 1.3L14.7 10M7 11H4v6.5c0 .8.7 1.5 1.5 1.5v0c.8 0 1.5-.7 1.5-1.5V11Zm6.5-1h5l.5.1a1.8 1.8 0 0 1 1 1.4l-.1.9-2.1 6.4c-.3.7-.4 1.2-1.7 1.2-2.3 0-4.8-1-6.7-1.5"/>
+            </svg>
+            <p class="font-semibold w-fit h-fit text-center
+                        xl:text-xl lg:text-lg md:text-base sm:text-sm min-[320px] max-[640px]:text-sm">
+                UI SIMPEL & PRAKTIS
+            </p>
+        </div>
+        <div class="text-yellow-300 w-1/4 h-32 my-2 flex flex-col align-middle items-center justify-center">
+            <svg class="text-yellow-300 dark:text-white
+                            xl:w-16 lg:w-16 md:w-14 sm:w-12 min-[320px] max-[640px]:w-12
+                            xl:h-16 lg:h-16 md:h-14 sm:h-12 min-[320px] max-[640px]:h-12
+                            xl: lg: md: sm: min-[320px] max-[640px]:" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.3L19 7H7.3"/>
+            </svg>            
+            <p class="font-semibold w-fit h-fit text-center
+                        xl:text-xl lg:text-lg md:text-base sm:text-sm min-[320px] max-[640px]:text-sm">
+                CART PRODUK
+            </p>
+        </div>
+        <div class="text-yellow-300 w-1/4 h-32 my-2 flex flex-col align-middle items-center justify-center">
+            <svg class="text-yellow-300 dark:text-white
+                            xl:w-16 lg:w-16 md:w-14 sm:w-12 min-[320px] max-[640px]:w-12
+                            xl:h-16 lg:h-16 md:h-14 sm:h-12 min-[320px] max-[640px]:h-12
+                            xl: lg: md: sm: min-[320px] max-[640px]:" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+            </svg>            
+            <p class="font-semibold w-fit h-fit text-center
+                        xl:text-xl lg:text-lg md:text-base sm:text-sm min-[320px] max-[640px]:text-sm">
+                CARI PRODUK
+            </p>
+        </div>
+        <div class="text-yellow-300 w-1/4 h-32 my-2 flex flex-col align-middle items-center justify-center">
+            <svg class="text-yellow-300 dark:text-white
+                            xl:w-16 lg:w-16 md:w-14 sm:w-12 min-[320px] max-[640px]:w-12
+                            xl:h-16 lg:h-16 md:h-14 sm:h-12 min-[320px] max-[640px]:h-12
+                            xl: lg: md: sm: min-[320px] max-[640px]:mt-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10h18M6 14h2m3 0h5M3 7v10c0 .6.4 1 1 1h16c.6 0 1-.4 1-1V7c0-.6-.4-1-1-1H4a1 1 0 0 0-1 1Z"/>
+            </svg>            
+            <p class="font-semibold w-fit h-fit text-center
+                        xl:text-xl lg:text-lg md:text-base sm:text-sm min-[320px] max-[640px]:text-sm">
+                PEMBAYARAN DARING
+            </p>
         </div>
     </section>
 </main>
 
 {{-- MAIN PAGE --}}
 <main class="container mx-auto pb-5 pt-10 px-16" id="product">
-    <section class="mb-6">
+    <section class="mb-8">
         
         <h2 class="text-4xl font-semibold mb-7 border-b-4 pb-4 border-yellow-300 uppercase flex justify-center">
             PRODUK TERBARU
         </h2>
 
         <div class="w-full flex justify-center">
-            <div class="grid grid-cols-5 gap-5 text-sm">
+            <div class="grid gap-5 text-sm
+            xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 min-[320px] max-[640px]:grid-cols-2
+            xl:h-full lg:h-full md: sm:h-[760px] min-[320px] max-[640px]:h-[760px]
+            xl: lg: md:overflow-hidden sm:overflow-hidden min-[320px] max-[640px]:overflow-hidden">
+            
                 @foreach ($products->take(10) as $product)
                     <a href="/product/{{ $product->id }}" class="">
-                        <div class="bg-white p-4 rounded-md shadow-md w-[210px] h-[400px] flex flex-col justify-between border-[1px]">
+                        <div class="bg-white p-4 rounded-md shadow-md flex flex-col justify-between border-[1px]
+                        xl:w-[210px] lg: md: sm: min-[320px] max-[640px]:
+                        xl:h-[400px] lg: md: sm: min-[320px] max-[640px]:">
                             <div class="">
                                 <div class="bg-gray-50 w-full flex justify-center border">
                                     <img class="w-[150px] h-[200px] object-cover" src="{{ asset('storage/' . $product->gambar) }}" alt="Product 1">
@@ -104,9 +150,12 @@
 
         <a href="/productmain" class="">
             <div class="bg-yellow-300 w-full py-1 mt-8 hover:brightness-95 justify-center flex active:scale-95 transition-all">
-                <p class="items-center justify-center flex text-2xl font-bold">
+                <p class="items-center justify-center flex font-bold
+                xl:text-2xl lg:text-2xl md:text-xl sm:text-lg min-[320px] max-[640px]:text-lg">
                     Temukan Lebih Banyak Produk 
-                    <svg class="w-7 h-7 text-gray-800 dark:text-white ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <svg class="text-gray-800 dark:text-white ml-2
+                    xl:w-7 lg:w7 md:w-6 sm:w-5 min-[320px] max-[640px]:w-5
+                    xl:h-7 lg:h-7 md:h-6 sm:h-5 min-[320px] max-[640px]:h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-width="3" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" transform="scale (-1, 1)" transform-origin="center"/>
                     </svg>
                 </p>
@@ -128,11 +177,15 @@
     </div> 
 </main>
 
+
+
 {{-- TUTORIAL --}}
 <main class="container mx-auto min-w-full py-16 px-10 justify-center flex" id="tutorial">
-    <div class="w-3/5">
+    <div class="
+    xl:w-3/5 lg:w-3/5 md:w-4/5 sm: min-[320px] max-[640px]:">
         <div class="">
-            <p class="text-3xl font-semibold mb-12">
+            <p class="font-semibold mb-12
+            xl:text-3xl lg:text-3xl md:text-3xl sm:text-2xl min-[320px] max-[640px]:text-xl">
                 Langkah-langkah untuk pemesanan barang: 
             </p>
         </div>
